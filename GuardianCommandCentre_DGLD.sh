@@ -3,20 +3,20 @@ cd $HOME/DGLD_GuardianCommandCentre
 
 # Check for ocean and dgld node daemons
 gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
-# echo "$gold_main_status"
+echo "$gold_main_status"
 ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
-# echo "$ocean_main_status"
+echo "$ocean_main_status"
 
 
-if test  $gold_main_status = "Online" && test $ocean_main_status = "Online" ;
+if test $gold_main_status = "Online" # && test $ocean_main_status = "Online" 
 then
 	echo "DGLD and CBT Nodes are online..."
 	sleep 2
 	echo ""
 else
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
-sleep 2
-echo ""
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
+	sleep 2
+	echo ""
 fi
 
 RED='\033[0;31m'
