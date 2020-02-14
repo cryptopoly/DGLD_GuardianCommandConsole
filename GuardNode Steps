@@ -1,0 +1,11 @@
+
+1. Install CBT Node & Wallet
+2. Back up wallets in safe place!
+3. Peg-In CBT
+4. Peg-Out CBT
+5. Install DGLD GuardNode
+6. Install DGLD Wallet
+7. Bid in GuardNode auction
+	sudo docker exec cbt_ocean_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getrequests
+	sudo docker exec cbt_ocean_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getrequests
+
