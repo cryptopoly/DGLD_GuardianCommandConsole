@@ -17,14 +17,12 @@
 ######### INSTALL_SCRIPT ########
 
 ## Save useful shortcuts for node functions ##
-echo "alias dgld='sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
-echo "alias cbt='sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
-echo "alias nodestart='sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d'" >> ~/.bash_aliases
-echo "alias nodestop='sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml down -d'" >> ~/.bash_aliases
+echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
+echo "alias cbt='docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
+echo "alias nodestart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d'" >> ~/.bash_aliases
+echo "alias cc='$HOME/DGLD_GuardianCommandCentre/GuardianCommandCentre_DGLD.sh'" >> ~/.bash_aliases
 source ~/.bash_aliases
 
-
-####  ####
 
 # Log stuff for troubleshooting
 set -x
@@ -47,12 +45,15 @@ sudo pip3 install -r requirements.txt
 sudo python3 setup.py build
 sudo python3 setup.py install
 
+# Update Docker premissions to docker without mod
+sudo usermod -aG docker $USER
+
 # Run Stuff
 cd $HOME/dgld
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
 sleep 2
-sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
-sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
+docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
+docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 
 # Bang out the CryptopoTools DGLD Guardian Command Centre
 cd
