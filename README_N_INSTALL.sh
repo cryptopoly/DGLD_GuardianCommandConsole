@@ -62,7 +62,5 @@ sleep 2
 sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 
-# Bang out the CryptopoTools DGLD Guardian Command Centre
-cd
-cd DGLD_GuardianCommandCentre
-./GuardianCommandCentre_DGLD.sh
+# Bang out the CryptopoTools DGLD Guardian Command Centre (as per alias above)
+cc
