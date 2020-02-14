@@ -1,5 +1,5 @@
 
-#### DGLD CBT Ocean Nodes and GuardNode all-in-one script ####
+#### DGLD CBT Ocean Nodes and GuardNode kinda all-in-one script ####
 
 # Step 1 - Open terminal
 # Step 2 - Type 'nano cbt.sh' and press Enter [nano text editor appears]
@@ -13,24 +13,23 @@
 # Step 10 - Enjoy!
 
 
-#### SAVE_ALIAS ####
-# Step 1 - Type "nano ~/.bash_aliases"
-# Step 2 - Copy alias text and paste into nano text editor
 
-alias dgld="sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass "
-alias cbt="sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass "
+######### INSTALL_SCRIPT ########
 
-# Step 3 - Press Ctrl+x
-# Step 4 - Type 'y'
-# Step 5 - Press Enter to save
-
+## Save useful shortcuts for node functions ##
+echo "alias dgld='sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
+echo "alias cbt='sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
+echo "alias nodestart='sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d'" >> ~/.bash_aliases
+echo "alias nodestop='sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml down -d'" >> ~/.bash_aliases
+source ~/.bash_aliases
 
 
-#### INSTALL_SCRIPT ###
+####  ####
 
-# Log stuff
+# Log stuff for troubleshooting
 set -x
-# Install stuff
+
+# Install required libraries/functions
 sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandCentre
@@ -40,7 +39,7 @@ sudo apt install jq -y
 sudo apt install curl -y
 sudo apt autoremove -y
 
-# Install GuardNodes
+# Install GuardNode
 cd $HOME
 git clone https://github.com/commerceblock/guardnode
 cd guardnode
