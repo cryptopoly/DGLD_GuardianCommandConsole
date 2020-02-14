@@ -1,5 +1,5 @@
 
-# DGLD CBT Ocean Nodes and GuardNode all-in-one script
+#### DGLD CBT Ocean Nodes and GuardNode all-in-one script ####
 
 # Step 1 - Open terminal
 # Step 2 - Type 'nano cbt.sh' and press Enter [nano text editor appears]
@@ -10,10 +10,23 @@
 # Step 7 - Type 'chmod +x cbt.sh' and press Enter
 # Step 8 - Type './cbt.sh' and press Enter
 # Step 9 - Type 'sudo -s', press Enter and type your password
-# Step 10 - Enjoy! 
+# Step 10 - Enjoy!
 
 
-#### COPY BELOW INTO NANO ###
+#### SAVE_ALIAS ####
+# Step 1 - Type "nano ~/.bash_aliases"
+# Step 2 - Copy alias text and paste into nano text editor
+
+alias dgld="sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass "
+alias cbt="sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass "
+
+# Step 3 - Press Ctrl+x
+# Step 4 - Type 'y'
+# Step 5 - Press Enter to save
+
+
+
+#### INSTALL_SCRIPT ###
 
 # Log stuff
 set -x
@@ -41,9 +54,6 @@ sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
 sleep 2
 sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
-
-alias dgld="sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass "
-alias cbt="sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass "
 
 # Bang out the CryptopoTools DGLD Guardian Command Centre
 cd
