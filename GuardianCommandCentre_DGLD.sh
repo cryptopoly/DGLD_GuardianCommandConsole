@@ -2,15 +2,17 @@ clear
 cd $HOME/DGLD_GuardianCommandCentre
 
 # Check for ocean and dgld node daemons
-gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "DGLD_Online" }')
+gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
 # echo "$gold_main_status"
-ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "CBT_Online" }')
+ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
 # echo "$ocean_main_status"
 
 
-if $gold_main_status = "DGLD_Online" && $ocean_main_status = "CBT_Online";
+if test  $gold_main_status = "Online" && test $ocean_main_status = "Online" ;
 then
-	echo "DGLD and CBT Nodes are running"
+	echo "DGLD and CBT Nodes are online..."
+	sleep 2
+	echo ""
 else
 docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
 sleep 2
@@ -31,34 +33,64 @@ echo -n "Date: "
 date -u 
 echo ""
 
-# GoldNode Sync Status
-echo -n "GoldNode Status: "
+# DGLD Sync Status
+echo -n "Gold Node Status: "
 echo $gold_main_status
 if test $gold_main_status > 0 ; 
 then
-	echo ""
 	
 	# DGLD.ch explorer blockheight via API
 	echo -n "DGLD.ch Blockheight: "
-	blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info |\
+	gold_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info |\
 	jq '.blockheight')
-	echo -e $blockheight_exp
+	echo -e $gold_blockheight_exp
 	echo ""
 
-# Blockchain sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
+
+# Gold node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 if
-	[[ $blockheight_node == '' ]]; then blockheight_node=$"0"; fi
-while blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
-(( $blockheight_node < $blockheight_exp ));
+	[[ $gold_blockheight_node == '' ]]; then gold_blockheight_node=$"0"; fi
+while gold_blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
+(( $gold_blockheight_node < $gold_blockheight_exp ));
 do
 	printf "\033[1A"
-	printf "\033[5m${AMBER}Node synchronising...$blockheight_node${NC}\033[0m"
+	printf "\033[5m${AMBER}Node synchronising...$gold_blockheight_node${NC}\033[0m"
 	echo ""
 done
 	printf "\033[1A"
-	echo -ne "Local GoldNode Blockheight: "; echo $blockheight_node;
+	echo -ne "Local GoldNode Blockheight: "; echo $gold_blockheight_node; echo ""
 else printf "${RED}Node not running${NC}"; echo ""
 fi
+
+
+# CBT Sync Status
+echo -n "CBT Node Status: "
+echo $ocean_main_status
+if test $ocean_main_status > 0 ; 
+then
+	
+	# CBT explorer blockheight via API
+	echo -n "CBT Explorer Blockheight: "
+	cbt_blockheight_exp=$(curl -s https://cbtexplorer.com/api/info |\
+	jq '.blockheight')
+	echo -e $cbt_blockheight_exp
+	echo ""
+
+# CBT ndoe sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
+if
+	[[ $cbt_blockheight_node == '' ]]; then cbt_blockheight_node=$"0"; fi
+while cbt_blockheight_node=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
+(( $cbt_blockheight_node < $cbt_blockheight_exp ));
+do
+	printf "\033[1A"
+	printf "\033[5m${AMBER}Node synchronising...$cbt_blockheight_node${NC}\033[0m"
+	echo ""
+done
+	printf "\033[1A"
+	echo -ne "Local CBT Node Blockheight: "; echo $cbt_blockheight_node;
+else printf "${RED}Node not running${NC}"; echo ""
+fi
+
 
 
 # Show Menu
