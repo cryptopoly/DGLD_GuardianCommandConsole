@@ -6,7 +6,7 @@ while true; do
 	elif [[ $blockheight == "00" ]] ; then exit ; echo "Exiting DGLD Command Launcher"; echo ""; exit
 	elif ! (($blockheight >= 0 && $blockheight <= $blockheight)) ; then exec
 else
-	sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockhash $blockheight
+	docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockhash $blockheight
 	# osascript -e 'display notification "Blockhash: '$blockhash'" with title "GoldNode"'
 	echo ""
 fi

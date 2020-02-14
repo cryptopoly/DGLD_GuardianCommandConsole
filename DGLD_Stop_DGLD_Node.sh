@@ -1,7 +1,7 @@
 
 if pgrep -x "oceand" | grep -v pgrep >&-
 then
-	sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass stop
+	docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass stop
 	sleep 2
 	if pgrep -x "oceand" | grep -v pgrep >&-; then echo killall oceand ;
 else

@@ -11,7 +11,7 @@ if $gold_main_status = "DGLD_Online" && $ocean_main_status = "CBT_Online";
 then
 	echo "DGLD and CBT Nodes are running"
 else
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
 sleep 2
 echo ""
 fi
@@ -47,7 +47,7 @@ then
 # Blockchain sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 if
 	[[ $blockheight_node == '' ]]; then blockheight_node=$"0"; fi
-while blockheight_node=$(sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
+while blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
 (( $blockheight_node < $blockheight_exp ));
 do
 	printf "\033[1A"

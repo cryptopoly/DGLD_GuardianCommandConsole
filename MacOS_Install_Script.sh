@@ -36,10 +36,10 @@ sudo python3 setup.py install
 
 # Run Stuff
 cd $HOME/dgld
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
 sleep 2
-sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
-sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
+docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
+docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 
 
 
