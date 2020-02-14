@@ -1,6 +1,13 @@
 
 #### DGLD CBT Ocean Nodes and GuardNode kinda all-in-one script ####
 
+# CryptoRaptor Represent
+# https://twitter.com/cryptopoly
+
+# Semi-Pros
+# Git clone this repo and execute this file if you're in the know. If the previous sentence is jibberish check out the easy steps :D
+
+# Noobs
 # Step 1 - Open terminal
 # Step 2 - Type 'nano cbt.sh' and press Enter [nano text editor appears]
 # Step 3 - Copy below script into nano
