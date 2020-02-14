@@ -1,4 +1,5 @@
 clear
+cd $HOME/DGLD_GuardianCommandCentre
 
 # Check for ocean and dgld node daemons
 gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "DGLD_Online" }')

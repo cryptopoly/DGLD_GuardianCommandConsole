@@ -50,10 +50,10 @@ sudo usermod -aG docker $USER
 
 # Run Stuff
 cd $HOME/dgld
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
+sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
 sleep 2
-docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
-docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
+sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
+sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 
 # Bang out the CryptopoTools DGLD Guardian Command Centre
 cd
