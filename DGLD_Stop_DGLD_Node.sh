@@ -1,14 +1,18 @@
+# set -x # debug
 
-if pgrep -x "oceand" | grep -v pgrep >&-
+
+# Check for dgld and cbt node daemons
+gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
+# echo "$gold_main_status"
+ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
+# echo "$ocean_main_status"
+
+if [[ $gold_main_status = "Online" ]] && [[ $ocean_main_status = "Online" ]]
 then
-	# docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass stop
-	# sleep 2
-	# if pgrep -x "oceand" | grep -v pgrep >&-;
-		then echo killall oceand ;
+	killall oceand
+	echo "DGLD and CBT Ocean servers stopping"
+	sleep 2
 else
-	echo "Ocean server offline"
-	# osascript -e 'display notification "goldnode has stopped successfully" with title "GoldNode"'; fi
-else
-	echo "Ocean server is not currently running"
-	echo -e
+	echo "DGLD and CBT Ocean servers are not currently running"
+
 fi

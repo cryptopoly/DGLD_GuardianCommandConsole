@@ -64,6 +64,7 @@ sudo python3 setup.py install
 
 # Update Docker premissions to docker without mod
 sudo usermod -aG docker $USER
+source ~/.bash_aliases
 
 # Run Stuff
 cd $HOME/dgld

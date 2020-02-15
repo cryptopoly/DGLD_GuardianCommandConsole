@@ -1,16 +1,17 @@
+# set -x # debug
 
-if pgrep -x "oceand" | grep -v pgrep >&-
+# Check for dgld and cbt node daemons
+gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
+# echo "$gold_main_status"
+ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
+# echo "$ocean_main_status"
+
+if [[ $gold_main_status = "Online" ]] && [[ $ocean_main_status = "Online" ]]
 then
-	echo "Ocean server already online"
-	echo -e
+	echo "DGLD and CBT Ocean servers online"
 else
-	docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass -v &
-	echo "Ocean server starting..."
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
+	echo "DGLD and CBT Ocean servers starting..."
 	echo -e
 	sleep 2
-	blockcount=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
-	sleep 2
-	echo "Blockcount =" "$blockcount"
-	# osascript -e 'display notification "GoldNode has started with Blockcount '$blockcount'" with title "GoldNode"'
-	exit
 fi

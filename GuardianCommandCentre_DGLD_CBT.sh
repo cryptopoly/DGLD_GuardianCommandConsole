@@ -1,38 +1,28 @@
-# clear
+clear
 cd $HOME/DGLD_GuardianCommandCentre
 
-# Check for ocean and dgld node daemons
-gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
-#echo "$gold_main_status"
-ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
-#echo "$ocean_main_status"
-
-sleep 2
-
-if test $gold_main_status = "Online" # && test $ocean_main_status = "Online" 
-then
-	echo "DGLD and CBT Nodes are online..."
-	sleep 2
-	echo ""
-else
-	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
-	sleep 2
-	echo ""
-fi
+# ./DGLD_Start_DGLD_Node.sh
 
 RED='\033[0;31m'
 AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
 
 while true; do
-	# clear
-	echo "Welcome to the DGLD-CBT GuardNode Command Centre"
-	echo ""
-
+clear
+echo "Welcome to the DGLD-CBT GuardNode Command Centre"
 # Current date
 echo -n "Date: "
 date -u 
 echo ""
+
+
+# Check for dgld and cbt node daemons
+gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
+# echo "$gold_main_status"
+ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
+# echo "$ocean_main_status"
+
+
 
 # DGLD Sync Status
 echo -n "Gold Node Status: "
@@ -46,6 +36,7 @@ then
 	jq '.blockheight')
 	echo -e $gold_blockheight_exp
 	echo ""
+
 
 
 # Gold node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
