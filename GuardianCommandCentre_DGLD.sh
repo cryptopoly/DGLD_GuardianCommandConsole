@@ -3,9 +3,9 @@ cd $HOME/DGLD_GuardianCommandCentre
 
 # Check for ocean and dgld node daemons
 gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
-echo "$gold_main_status"
+#echo "$gold_main_status"
 ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
-echo "$ocean_main_status"
+#echo "$ocean_main_status"
 
 
 if test $gold_main_status = "Online" # && test $ocean_main_status = "Online" 
