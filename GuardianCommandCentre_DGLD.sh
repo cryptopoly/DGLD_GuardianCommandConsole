@@ -8,6 +8,7 @@ ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ pr
 #echo "$ocean_main_status"
 
 
+
 if test $gold_main_status = "Online" # && test $ocean_main_status = "Online" 
 then
 	echo "DGLD and CBT Nodes are online..."
