@@ -21,6 +21,15 @@
 
 
 
+
+# TERMINAL SHORTCUTS/COMMANDS:
+# 'cc' shortcut to open the command centre
+# '00' to exit the command centre
+# 'dgld' and 'cbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
+# 'nodestart' kicks off
+
+
+
 ######### INSTALL_SCRIPT ########
 
 ## Save useful shortcuts for node functions ##
@@ -54,7 +63,7 @@ sudo python3 setup.py build
 sudo python3 setup.py install
 
 # Update Docker premissions to docker without mod
-sudo usermod -aG docker $USERS
+sudo usermod -aG docker $USER
 
 # Run Stuff
 cd $HOME/dgld

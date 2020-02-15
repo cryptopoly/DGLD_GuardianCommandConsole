@@ -26,7 +26,7 @@ NC='\033[0m' # No Colour
 
 while true; do
 	clear
-	echo "Welcome to the DGLD GuardNode Command Centre"
+	echo "Welcome to the DGLD-CBT GuardNode Command Centre"
 	echo ""
 
 # Current date
