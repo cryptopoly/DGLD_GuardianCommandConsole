@@ -35,6 +35,7 @@ source ~/.bash_aliases
 set -x
 
 # Install required libraries/functions
+cd
 sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandCentre
@@ -53,7 +54,7 @@ sudo python3 setup.py build
 sudo python3 setup.py install
 
 # Update Docker premissions to docker without mod
-sudo usermod -aG docker $USERw
+sudo usermod -aG docker $USERS
 
 # Run Stuff
 cd $HOME/dgld
