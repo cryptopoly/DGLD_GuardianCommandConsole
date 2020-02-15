@@ -1,4 +1,4 @@
-clear
+# clear
 cd $HOME/DGLD_GuardianCommandCentre
 
 # Check for ocean and dgld node daemons
@@ -25,7 +25,7 @@ AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
 
 while true; do
-	clear
+	# clear
 	echo "Welcome to the DGLD-CBT GuardNode Command Centre"
 	echo ""
 
