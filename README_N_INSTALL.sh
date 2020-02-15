@@ -40,7 +40,7 @@ echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser
 echo "alias cbt='docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
 echo "alias nodestart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d'" >> ~/.bash_aliases
 echo "alias nodestop='killall oceand'" >> ~/.bash_aliases
-echo "alias cc='$HOME/DGLD_GuardianCommandCentre/GuardianCommandCentre_DGLD.sh'" >> ~/.bash_aliases
+echo "alias cc='$HOME/DGLD_GuardianCommandCentre/GuardianCommandCentre_DGLD_CBT.sh'" >> ~/.bash_aliases
 source ~/.bash_aliases
 
 # Install required libraries/functions
