@@ -48,7 +48,7 @@ echo ""
 docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance
 echo ""
 # Confirm to continue command
-read -n 1 -s -r -p "Press any key to continue - to peg out please choose CBT_Peg_Out.sh from the main menu"
+read -n 1 -s -r -p "To peg out please choose CBT_Peg_Out.sh from the main menu. Press any key to continue"
 echo ""
 echo ""
 
