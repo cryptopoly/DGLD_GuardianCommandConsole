@@ -1,5 +1,7 @@
 # set -x # debug
 
+# script Log.txt
+
 clear
 cd $HOME/DGLD_GuardianCommandCentre
 ./Start_Nodes.sh

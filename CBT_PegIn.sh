@@ -1,5 +1,6 @@
 # set -x # debug
 clear
+# script Log.txt
 
 echo "Step 1"
 echo "Export the private key of the ethereum address that owns the CBT tokens. This should be in hex format"
@@ -40,17 +41,13 @@ echo ""
 echo ""
 
 echo "Step 5"
-echo "Run the getbalance RPC and verify that the CBT has been pegged in to the Ocean network:"
+echo "Verify that the CBT has been pegged in to the Ocean network (getbalance):"
 docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance
 echo ""
 # Confirm to continue command
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "Press any key to continue - to peg out please choose CBT_PegOut.sh from the main menu"
 echo ""
 echo ""
-
-echo "Step 6"
-echo "To peg-out this CBT will require running the sendtoethmainchain RPC specifying an address to send the CBT to as well as the amount to peg-out:
-e.g. 'ocean-cli sendtoethmainchain 8e8a0ec05cc3c2b8511aabadeeb821df19ea7564 0.1'"
 
 
 # Confirm to continue command
