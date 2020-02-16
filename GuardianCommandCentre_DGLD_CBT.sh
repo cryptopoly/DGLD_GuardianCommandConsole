@@ -9,6 +9,8 @@ RED='\033[0;31m'
 AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
 
+
+
 while true; do
 clear
 echo "Welcome to the DGLD-CBT GuardNode Command Centre"
@@ -70,7 +72,7 @@ then
 	echo -e $cbt_blockheight_exp
 	echo ""
 
-# CBT ndoe sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
+# CBT node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 if
 	[[ $cbt_blockheight_node == '' ]]; then cbt_blockheight_node=$"0"; fi
 while cbt_blockheight_node=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
