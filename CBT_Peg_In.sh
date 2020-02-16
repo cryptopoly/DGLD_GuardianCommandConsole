@@ -2,6 +2,8 @@
 clear
 # script Log.txt
 
+echo "CBT ERC-20 Peg-In to CBT Mainnet"
+echo ""
 echo "Step 1"
 echo "Export the private key of the ethereum address that owns the CBT tokens. This should be in hex format"
 echo "e.g. '0xcb850d9db23b54ebbeae09995f7192af83646f9ea232645bb5a71699e5c15a6e'"
