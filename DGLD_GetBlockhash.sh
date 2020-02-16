@@ -1,3 +1,5 @@
+ 
+# set -x # debug
 
 while true; do
 	echo "Enter Blockheight for Blockhash ('00' to exit)"

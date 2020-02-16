@@ -1,3 +1,5 @@
+ 
+
 #### DGLD CBT Ocean Nodes and GuardNode kinda all-in-one script ####
 
 # CryptoRaptor Represent
@@ -16,7 +18,7 @@
 # Step 7 - Type 'chmod +x cbt.sh' and press Enter
 # Step 8 - Type './cbt.sh' and press Enter
 # Step 9 - Type 'sudo -s', press Enter and type your password
-# Step 10 - Enjoy!
+# Step 10 - Restart once all installed
 
 
 
@@ -25,7 +27,7 @@
 # 'cc' shortcut to open the command centre
 # '00' to exit the command centre
 # 'dgld' and 'cbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
-# 'nodestart' kicks off
+# 'nodestart' or 'nodestop' to launch/kill both nodes
 
 
 
@@ -65,6 +67,10 @@ sudo python3 setup.py install
 sudo usermod -aG docker $USER
 source ~/.bash_aliases
 
+# Add double-click to run in terminal
+gsettings set org.gnome.nautilus.preferences executable-text-activation ask
+
+
 # Run Stuff
 cd $HOME/dgld
 sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
@@ -72,5 +78,7 @@ sleep 2
 sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 
-# Bang out the CryptopoTools DGLD Guardian Command Centre (as per alias above)
-cc
+# Confirm exit command
+read -n 1 -s -r -p "Press any key to continue"
+echo ""
+echo ""

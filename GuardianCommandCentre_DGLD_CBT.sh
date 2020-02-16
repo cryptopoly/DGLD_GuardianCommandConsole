@@ -1,3 +1,5 @@
+# set -x # debug
+
 clear
 cd $HOME/DGLD_GuardianCommandCentre
 

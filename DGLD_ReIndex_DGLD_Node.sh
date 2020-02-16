@@ -1,3 +1,5 @@
+ 
+# set -x # debug
 
 # Stop node
 if pgrep -x "oceand" | grep -v pgrep >&-

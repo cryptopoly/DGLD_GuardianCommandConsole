@@ -1,3 +1,5 @@
+ 
+# set -x # debug
 
 echo "Enter RPC command e.g. getblockchaininfo, ('00' to exit)"
 read freestyle
