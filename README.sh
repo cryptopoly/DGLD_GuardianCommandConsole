@@ -79,6 +79,8 @@ sudo docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpa
 sudo docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 
 # Confirm exit command
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "Press any key to restart"
 echo ""
 echo ""
+
+shutdown -r
