@@ -2,7 +2,7 @@
 
 clear
 cd $HOME/DGLD_GuardianCommandCentre
-
+./Start_Nodes.sh
 # ./DGLD_Start_DGLD_Node.sh
 
 RED='\033[0;31m'

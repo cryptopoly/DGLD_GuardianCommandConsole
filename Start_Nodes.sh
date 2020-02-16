@@ -14,5 +14,5 @@ else
 	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
 	echo "DGLD and CBT Ocean servers starting..."
 	echo -e
-	sleep 2
+	sleep 4
 fi
