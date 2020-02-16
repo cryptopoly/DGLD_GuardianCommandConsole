@@ -47,6 +47,7 @@ source ~/.bash_aliases
 # Install required libraries/functions
 cd
 sudo apt install git -y
+sudo apt-get update -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandCentre
 sudo apt install docker -y

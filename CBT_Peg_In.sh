@@ -4,6 +4,10 @@ clear
 
 echo "CBT ERC-20 Peg-In to CBT Mainnet"
 echo ""
+echo 'CBT Balance:'
+docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance
+Balance=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance)
+echo ""
 echo "Step 1"
 echo "Export the private key of the ethereum address that owns the CBT tokens. This should be in hex format"
 echo "e.g. '0xcb850d9db23b54ebbeae09995f7192af83646f9ea232645bb5a71699e5c15a6e'"
@@ -37,27 +41,14 @@ read cbtamount
 echo ""
 echo "Enter the eth_claim_pubkey:"
 read ethclaimpubkey
-docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass claimethpegin $ethclaimpubkey $txid $cbtamount
 echo ""
-# Confirm to continue command
-read -n 1 -s -r -p "Press any key to continue"
+echo "Mainnet Tx broadcasted with Id:"
+echo "https://cbtexplorer.com/tx/" & docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass claimethpegin $txid $cbtamount $ethclaimpubkey
 echo ""
-echo ""
-
-echo "Step 5"
-echo "Verify that the CBT has been pegged in to the Ocean network (getbalance):"
-echo ""
+echo "New CBT Balance:"
 docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance
 echo ""
 # Confirm to continue command
 read -n 1 -s -r -p "To peg out please choose CBT_Peg_Out.sh from the main menu. Press any key to continue"
 echo ""
 echo ""
-
-
-# Confirm to continue command
-read -n 1 -s -r -p "Press any key to continue"
-echo ""
-echo ""
-
-# sample txid = f24ea77da2a7746f64d44e72e3fbf1e7eb832bdc76121017226aa9a6c04e6348
