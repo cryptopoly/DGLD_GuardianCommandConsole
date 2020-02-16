@@ -16,7 +16,7 @@ docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpass
 echo ""
 
 echo "Step 3"
-echo "Pay the CBT tokens to the eth_mainchain_address returned above and save the Transaction ID to hand. The transaction will require a minimum amount of 10 confirmations before being allowed to peg-in."
+echo "Pay the CBT tokens to the eth_mainchain_address returned above (remember to add the '0x' at the beginning!) and save the Transaction ID to hand. The transaction will require a minimum amount of 10 confirmations before being allowed to peg-in."
 echo ""
 # Confirm to continue command
 read -n 1 -s -r -p "Press any key to confirm CBT tokens have been sent to the eth_mainchain_address as above and the tx has 10 or more confirmations"
@@ -24,16 +24,18 @@ echo ""
 echo ""
 
 echo "Step 4"
-echo "Run the claimethpegin RPC using the eth_claim_pubkey returned above, the transaction id and the CBT amount as:"
-echo "e.g. 'ocean-cli claimethpegin (txid) (amount) (eth_claim_pubkey) '"
+echo "Claim the CBT Mainnet tokens with eth_claim_pubkey returned above, the transaction id and the CBT amount (claimethpegin):"
+echo "e.g. 'ocean-cli claimethpegin [tx_id] [cbt_amount] [eth_claim_pubkey]'"
 echo ""
 echo "Enter the tx_id (without '0x'):"
-read tx_id
-echo "Enter the CBT amount:"
-read cbt_amount
+read txid
+echo ""
+echo "Enter the CBT amount to Peg-In:"
+read cbtamount
+echo ""
 echo "Enter the eth_claim_pubkey:"
-read eth_claim_pubkey
-docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass claimethpegin $eth_claim_pubkey $tx_id $cbt_amount
+read ethclaimpubkey
+docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass claimethpegin $ethclaimpubkey $txid $cbtamount
 echo ""
 # Confirm to continue command
 read -n 1 -s -r -p "Press any key to continue"
@@ -42,10 +44,11 @@ echo ""
 
 echo "Step 5"
 echo "Verify that the CBT has been pegged in to the Ocean network (getbalance):"
+echo ""
 docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance
 echo ""
 # Confirm to continue command
-read -n 1 -s -r -p "Press any key to continue - to peg out please choose CBT_PegOut.sh from the main menu"
+read -n 1 -s -r -p "Press any key to continue - to peg out please choose CBT_Peg_Out.sh from the main menu"
 echo ""
 echo ""
 
@@ -54,3 +57,5 @@ echo ""
 read -n 1 -s -r -p "Press any key to continue"
 echo ""
 echo ""
+
+# sample txid = f24ea77da2a7746f64d44e72e3fbf1e7eb832bdc76121017226aa9a6c04e6348
