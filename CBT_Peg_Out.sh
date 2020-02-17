@@ -20,7 +20,7 @@ read cbtamount
 echo ""
 echo ""
 echo "Tx broadcasted with Id:"
-docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass sendtoethmainchain $ethpegoutaddress $cbtamount
+echo "https://cbtexplorer.com/tx/" & docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass sendtoethmainchain $ethpegoutaddress $cbtamount
 echo ""
 echo "New CBT Balance:"
 docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance

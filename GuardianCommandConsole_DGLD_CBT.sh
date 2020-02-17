@@ -3,9 +3,9 @@
 # script Log.txt
 
 clear
-cd $HOME/DGLD_GuardianCommandCentre
+cd $HOME/DGLD_GuardianCommandConsole
 ./Start_Nodes.sh
-# ./DGLD_Start_DGLD_Node.sh
+
 
 RED='\033[0;31m'
 AMBER='\033[0;33m'
@@ -15,7 +15,7 @@ NC='\033[0m' # No Colour
 
 while true; do
 clear
-echo "Welcome to the DGLD-CBT GuardNode Command Centre"
+echo "Welcome to the DGLD-CBT GuardNode Command Console"
 # Current date
 echo -n "Date: "
 date -u 
@@ -105,7 +105,7 @@ echo ""
 
 # Exit clause
 if [[ -z $menuid ]] ; then exec
-elif [[ $menuid == "00" ]] ; then exit ; echo "Exiting DGLD Guardian Command Centre"; echo ""; exit
+elif [[ $menuid == "00" ]] ; then exit ; echo "Exiting DGLD Guardian Command Console"; echo ""; exit
 elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then exec
 else
 

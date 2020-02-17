@@ -1,5 +1,5 @@
  
 # set -x # debug
 
-cd $HOME/DGLD_GuardianCommandCentre
+cd $HOME/DGLD_GuardianCommandConsole
 git pull origin master
