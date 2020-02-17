@@ -24,8 +24,8 @@
 
 
 # TERMINAL SHORTCUTS/COMMANDS:
-# 'cc' shortcut to open the command centre
-# '00' to exit the command centre
+# 'cc' shortcut to open the command center
+# '00' to exit the command center
 # 'dgld' and 'cbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
 # 'nodestart' or 'nodestop' to launch/kill both nodes
 
@@ -41,7 +41,7 @@ echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser
 echo "alias cbt='docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
 echo "alias nodestart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d'" >> ~/.bash_aliases
 echo "alias nodestop='killall oceand'" >> ~/.bash_aliases
-echo "alias cc='$HOME/DGLD_GuardianCommandCentre/GuardianCommandCentre_DGLD_CBT.sh'" >> ~/.bash_aliases
+echo "alias cc='$HOME/DGLD_GuardianCommandCenter/GuardianCommandCenter_DGLD_CBT.sh'" >> ~/.bash_aliases
 source ~/.bash_aliases
 
 # Install required libraries/functions
@@ -49,7 +49,7 @@ cd
 sudo apt install git -y
 sudo apt-get update -y
 git clone https://github.com/goldtokensa/config dgld
-git clone https://github.com/cryptopoly/DGLD_GuardianCommandCentre
+git clone https://github.com/cryptopoly/DGLD_GuardianCommandCenter
 sudo apt install docker -y
 sudo apt install docker-compose -y
 sudo apt install jq -y
