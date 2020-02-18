@@ -13,7 +13,7 @@
 # Step 10 - Enjoy! 
 
 
-#### COPY BELOW INTO NANO ###
+#### COPY BELOW INTO NANO ####
 
 # Log stuff
 set -x
@@ -42,6 +42,4 @@ docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpasswor
 docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
 
 
-
-
-
+curl -X GET https://api.etherscan.io/api?module=account&action=tokentx&contractaddress=0x076C97e1c869072eE22f8c91978C99B4bcB02591&address=0x9178afdf2fc2cbdde30290c0b49f040ff804e06c&page=1&offset=5&sort=desc&apikey=MRX1RQP9V1ZHXU5R9N14P4Q71NMCH4D7PF -d 'JSON_DATA'
