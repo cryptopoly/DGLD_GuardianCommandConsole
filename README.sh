@@ -13,12 +13,8 @@
 # Step 2 - Enter 'sudo apt install git'
 # Step 3 - Enter password
 # Step 4 - Press 'y'
-# Step 5 - Enter './DGLD_GuardianCommandConsole/README.sh'
-# Step 6 - Press Enter to save
-# Step 7 - Type 'chmod +x cbt.sh' and press Enter
-# Step 8 - Type './cbt.sh' and press Enter
-# Step 9 - Type 'sudo -s', press Enter and type your password
-# Step 10 - Restart once all installed
+# Step 5 - Enter 'curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README.sh | bash'
+# Step 6 - Restart once all installed to ensure settings are fully applied
 
 # TERMINAL SHORTCUTS/COMMANDS:
 # 'cc' shortcut to open the command console
@@ -43,14 +39,14 @@ echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CB
 source ~/.bash_aliases
 
 ## Declare environment variables ##
-export dgld="docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass "
-export cbt="docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass "
-export nodestart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb"
-export nodestop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb"
-export gnstart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode"
-export gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
-export logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
-export cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
+dgld="docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass "
+cbt="docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass "
+nodestart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb"
+nodestop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb"
+gnstart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode"
+gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
+logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
+cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
 
 ## Declare environment variables ##
 # $HOME/DGLD_GuardianCommandConsole/Variables.sh
