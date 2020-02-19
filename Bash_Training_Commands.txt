@@ -400,7 +400,7 @@ jq '.[] | .' /map.json
 
 
 
-Map.json
+# Example json
 {
   "n": 2,
   "m": 3,
