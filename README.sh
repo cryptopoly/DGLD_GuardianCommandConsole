@@ -72,13 +72,14 @@ gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
 # Start dgld & cbt nodes
 cd $HOME/dgld
-$nodestart
+nodestart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb"
+nodestop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb"
 sleep 2
 $dgld getblockchaininfo
 $cbt getblockchaininfo
 
 # Start guardnode
-$gnstart
+gnstart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode"
 $logs guardnode
 
 # Confirm exit command
