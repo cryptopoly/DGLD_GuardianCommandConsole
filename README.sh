@@ -53,7 +53,6 @@ cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
 
 # Install required libraries
 cd $HOME
-sudo apt install git -y
 sudo apt-get update -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
@@ -80,6 +79,7 @@ $cbt getblockchaininfo
 
 # Start guardnode
 gnstart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode"
+sleep 2
 $logs guardnode
 
 # Confirm exit command
