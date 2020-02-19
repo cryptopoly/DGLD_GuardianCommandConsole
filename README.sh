@@ -53,7 +53,7 @@ export logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compos
 export cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
 
 ## Declare environment variables ##
-$HOME/DGLD_GuardianCommandConsole/Variables.sh
+# $HOME/DGLD_GuardianCommandConsole/Variables.sh
 
 # Install required libraries
 cd $HOME
