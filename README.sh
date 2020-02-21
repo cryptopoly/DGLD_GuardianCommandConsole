@@ -10,7 +10,7 @@
 
 # Noobs
 # Step 1 - Open terminal
-# Step 2 - Enter 'sudo apt install git'
+# Step 2 - Enter 'sudo apt install curl'
 # Step 3 - Enter password
 # Step 4 - Press 'y'
 # Step 5 - Enter 'curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README.sh | bash'
