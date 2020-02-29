@@ -52,34 +52,34 @@ find . -type d | grep -v '/\.'
 
 # Prints every command for troubleshooting <I>
 set -x
-# Script
-set -x
-cd $HOME
-sudo apt install git -y
-git clone https://github.com/commerceblock/ocean
-cd $HOME/ocean
-sudo add-apt-repository ppa:bitcoin/bitcoin -y
-# Example
-dgld-v2@dgld-v2:~$ ./o2.sh 
-++ cd /home/dgld-v2
-++ sudo apt install git -y
-[sudo] password for dgld-v2: 
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-git is already the newest version (1:2.17.1-1ubuntu0.4).
-0 to upgrade, 0 to newly install, 0 to remove and 0 not to upgrade.
-++ git clone https://github.com/commerceblock/ocean
-fatal: destination path 'ocean' already exists and is not an empty directory.
-++ cd /home/dgld-v2/ocean
-++ sudo add-apt-repository ppa:bitcoin/bitcoin -y
-Hit:1 http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu bionic InRelease
-Hit:2 http://gb.archive.ubuntu.com/ubuntu bionic InRelease                 
-Get:3 http://gb.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]   
-Hit:4 http://security.ubuntu.com/ubuntu bionic-security InRelease              
-Hit:5 http://gb.archive.ubuntu.com/ubuntu bionic-backports InRelease           
-Fetched 88.7 kB in 0s (201 kB/s)                   
-Reading package lists... Done
+# Script example
+# set -x
+# cd $HOME
+# sudo apt install git -y
+# git clone https://github.com/commerceblock/ocean
+# cd $HOME/ocean
+# sudo add-apt-repository ppa:bitcoin/bitcoin -y
+# # Example
+# dgld-v2@dgld-v2:~$ ./o2.sh 
+# ++ cd /home/dgld-v2
+# ++ sudo apt install git -y
+# [sudo] password for dgld-v2: 
+# Reading package lists... Done
+# Building dependency tree       
+# Reading state information... Done
+# git is already the newest version (1:2.17.1-1ubuntu0.4).
+# 0 to upgrade, 0 to newly install, 0 to remove and 0 not to upgrade.
+# ++ git clone https://github.com/commerceblock/ocean
+# fatal: destination path 'ocean' already exists and is not an empty directory.
+# ++ cd /home/dgld-v2/ocean
+# ++ sudo add-apt-repository ppa:bitcoin/bitcoin -y
+# Hit:1 http://ppa.launchpad.net/bitcoin/bitcoin/ubuntu bionic InRelease
+# Hit:2 http://gb.archive.ubuntu.com/ubuntu bionic InRelease                 
+# Get:3 http://gb.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]   
+# Hit:4 http://security.ubuntu.com/ubuntu bionic-security InRelease              
+# Hit:5 http://gb.archive.ubuntu.com/ubuntu bionic-backports InRelease           
+# Fetched 88.7 kB in 0s (201 kB/s)                   
+# Reading package lists... Done
 
 # Text colour
 RED='\033[0;31m'
@@ -355,6 +355,12 @@ echo All done
 # RawGitHubInstall
 curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README.sh | bash
 
+# Latest git release (.deb)
+LOCATION=$(curl -s https://api.github.com/repos/commerceblock/ocean/releases/latest \
+| grep "tag_name" \
+| awk '{print "https://github.com/commerceblock/ocean/archive/" substr($2, 2, length($2)-3) ".deb"}') \
+; curl -L -o latest_ocean.zip $LOCATION
+
 # cURL - retrieve information from json api + credentials via -H cookie (with cloudflare cookie - open browser, F12, network tab, open site, log in to site, right click site url, copy curl copy as cURL, retrieve cookie)
 curl -s https://explorer.dgld.ch/api/info -H 'cookie: __cfduid=de4c33e3c5a0639f0950ff48fd34daeec1566473055; wooTracker=y3S3DNZ133lc; onfido-js-sdk-woopra=VtFyaEMgZCRC; CF_Authorization=eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc3ZTNjZDQyMjRhNTYzNTI0NWE5MTlkNzNlMjgzZGYxNzY2ZDcyMGEzYzEzMjUzMjhkOTAxOGRiOGM5YmVhM2MifQ.eyJhdWQiOlsiNmY3M2MyNmRkMmUzMGVlMDY5NDQwZDhiNmJhMTBjMmY3NTczNzBlNjM3MWNlNzJjNzYxOTE0NjNjNTdkN2U0ZSJdLCJlbWFpbCI6ImRhbi5ldmVAZ3RzYS5pbyIsImV4cCI6MTU3MDAyOTYxOSwiaWF0IjoxNTY5OTQzMjE5LCJuYmYiOjE1Njk5NDMyMTksImlzcyI6Imh0dHBzOi8vZGdsZC5jbG91ZGZsYXJlYWNjZXNzLmNvbSIsInR5cGUiOiJhcHAiLCJzdWIiOiIwNzM1RTI2RUIxQkQ4N0ExQjcyRDhBMEY3NTc2QzlBRkRFQkIyMUVCIn0.G8cIWqufv-pjAs5YogQReha5UZ9h0PcCaoHR73UQ2ZgixlIueH2IfKLHo8Gjf-QwtRpGupjcr8ABGSKgrCEg28S9BSbiUQ3AWzznU-8RqIWKBQWT0UDKMUkl4aPyLM3lBnt4QmGb8bqNLxP3_kNE-jOwen_89N51fKQ6yfNEtIbLoZtpGBbbZ672UaD1tB6GUk6rdY29M6P36z6Csf9Dqh2-WFsOc73HZ0yz0pJ0knmCBI9z7l_okLMwpFmxm7WKydi0wssqqgPcH4YBHw1ni2wv2AWHupuCRCTvdpk10HvfFOM7jwZ1EpCBwL49B94AeQbdDqyGhzkzI2yzCCcRHg'|\
   jq '.blockheight'
@@ -374,6 +380,7 @@ curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json |\
 
 # Return lines from file
 cat ./map.json | grep assets
+
 
 
 # Output full json
