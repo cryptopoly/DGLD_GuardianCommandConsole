@@ -14,7 +14,7 @@
 # Step 3 - Enter password
 # Step 4 - Press 'y'
 # Step 5 - Enter 'curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README.sh | bash'
-# Step 6 - Restart once all installed to ensure settings are fully applied
+# Step 6 - Restart the VPS once all installed to ensure settings are fully applied
 
 # TERMINAL SHORTCUTS/COMMANDS:
 # 'cc' shortcut to open the command console
@@ -39,28 +39,63 @@ echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CB
 source ~/.bash_aliases
 
 ## Declare environment variables ##
-dgld="docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass "
-cbt="docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass "
-nodestart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb"
-nodestop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb"
+dgldnodestart="./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
+dgld="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
+dgldnodestop="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop"
+
+cbtnodestart="./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
+cbt="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
+cbtnodestop="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
+
 gnstart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode"
 gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
 logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
 cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
 
-## Declare environment variables ##
-# $HOME/DGLD_GuardianCommandConsole/Variables.sh
+
+# Install GuardNode
+cd $HOME
+git clone https://github.com/commerceblock/guardnode
+cd guardnode
+sudo pip3 install -r requirements.txt
+sudo python3 setup.py build
+sudo python3 setup.py install
+
 
 # Install required libraries
 cd $HOME
 sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
-sudo apt install docker -y
-sudo apt install docker-compose -y
 sudo apt install jq -y
 sudo apt install curl -y
 sudo apt autoremove -y
+
+# Create folders
+mkdir $HOME/ocean
+mkdir $HOME/ocean/binaries
+mkdir $HOME/ocean/binaries/versions
+
+# Get latest deb release version & URL from github
+LATEST_RELEASE=$(curl -s https://api.github.com/repos/commerceblock/ocean/releases/latest \
+| grep "tag_name" \
+| awk '{print substr($2, 2, length($2)-3) }')
+URL=(https://github.com/commerceblock/ocean/releases/download/$LATEST_RELEASE/ocean-$LATEST_RELEASE.deb)
+
+# Create version folder and download deb
+mkdir $HOME/ocean/binaries/versions/$LATEST_RELEASE
+
+# Download .deb binaries
+curl -L -o $HOME/ocean/versions/$LATEST_RELEASE/$LATEST_RELEASE.deb $URL
+
+# Unpack binaries
+dpkg-deb -R $HOME/$LATEST_RELEASE.deb $HOME/ocean/binaries/versions/$LATEST_RELEASE/
+
+# Find and copy binaries
+find $HOME/ocean/binaries/versions/$LATEST_RELEASE -name "*ocean*" -type f -exec cp {} $HOME/ocean/ \;
+
 
 # Update Docker premissions to docker without mod
 sudo usermod -aG docker $USER

@@ -343,26 +343,29 @@ echo -n "Blockheight: "; echo $blockheight;
 echo -n "Calculated Genesis Block Timestamp: "; date -u -r 1568700000 -v +"$blockheight"M
 
 
-
 # Download latest deb release from github
 set -x
 LATEST_RELEASE=$(curl -s https://api.github.com/repos/commerceblock/ocean/releases/latest \
 | grep "tag_name" \
 | awk '{print substr($2, 2, length($2)-3) }')
-LOCATION=$(curl -s https://api.github.com/repos/commerceblock/ocean/releases/latest \
-| grep "tag_name" \
-| awk '{print "https://github.com/repos/commerceblock/ocean/releases/download/ substr($2, 2, length($2)-3) ".zip"}')
-curl -L -o $HOME/ocean/$LATEST_RELEASE.deb $LOCATION
+echo $LATEST_RELEASE
 
+URL=(https://github.com/commerceblock/ocean/releases/download/$LATEST_RELEASE/ocean-$LATEST_RELEASE.deb)
+curl -L -o $LATEST_RELEASE.deb $URL
+echo $LATEST_RELEASE
 
+# Install deb package
+sudo apt install /path/to/package/name.deb
 
 # UNPACK .DEB
-mkdir tmp
-dpkg-deb -R $LATEST_RELEASE.deb tmp
+cd $HOME/ocean
+mkdir $LATEST_RELEASE
+dpkg-deb -R $LATEST_RELEASE.deb $HOME/ocean/
 # edit DEBIAN/postinst
 dpkg-deb -b tmp $LATEST_RELEASE.deb
 
-
+# Find and copy files
+find $HOME/ocean/$LATEST_RELEASE -name "*ocean*" -type f -exec cp {} $HOME/ocean/$LATEST_RELEASE \;
 
 
 # Infinite Number Loop
@@ -377,21 +380,6 @@ echo All done
 # RawGitHubInstall
 curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README.sh | bash
 
-# Latest git release (.deb)
-LOCATION=$(curl -s https://api.github.com/repos/commerceblock/ocean/releases/latest \
-| grep "tag_name" \
-| awk '{print "https://github.com/commerceblock/ocean/archive/" substr($2, 2, length($2)-3) ".deb"}') \
-; curl -L -o latest_ocean_release.deb $LOCATION
-
-
-
-# Latest git release (.deb) MORE
-set -x
-LATEST_RELEASE=$(curl -s https://api.github.com/repos/commerceblock/ocean/releases/latest \
-| grep "tag_name" \
-| awk '{print substr($2, 2, length($2)-3) }')
-URL=(https://github.com/commerceblock/ocean/releases/download/$LATEST_RELEASE/ocean-$LATEST_RELEASE.deb)
-curl -L -o $LATEST_RELEASE.deb $URL
 
 
 # cURL - retrieve information from json api + credentials via -H cookie (with cloudflare cookie - open browser, F12, network tab, open site, log in to site, right click site url, copy curl copy as cURL, retrieve cookie)
