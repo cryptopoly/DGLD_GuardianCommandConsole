@@ -10,11 +10,10 @@
 
 # Noobs
 # Step 1 - Open terminal
-# Step 2 - Enter 'sudo apt install curl'
+# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README_v2_Binaries.sh | bash'
 # Step 3 - Enter password
-# Step 4 - Press 'y'
-# Step 5 - Enter 'curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README.sh | bash'
-# Step 6 - Restart the VPS once all installed to ensure settings are fully applied
+# Step 4 - Enter 'y'
+# Step 5 - Restart the VPS once all installed to ensure settings are fully applied
 
 # TERMINAL SHORTCUTS/COMMANDS:
 # 'cc' shortcut to open the command console
@@ -28,15 +27,16 @@
 set -x
 
 ## Save useful alias shortcuts for node functions ##
-echo "alias dgldnodestart='./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean'" >> ~/.bash_aliases
-echo "alias dgld='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
-echo "alias dgldnodestop='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop'" >> ~/.bash_aliases
+echo "alias dgldnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean'" >> ~/.bash_aliases
+echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
+echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
+echo "alias dgldnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop'" >> ~/.bash_aliases
 
-echo "alias cbtnodestart='./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb'" >> ~/.bash_aliases
-echo "alias cbt='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
-echo "alias cbtnodestop='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop'" >> ~/.bash_aliases
+echo "alias cbtnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb'" >> ~/.bash_aliases
+echo "alias cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
+echo "alias cbtnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop'" >> ~/.bash_aliases
 
-echo "alias gnstart='./guardnode/run_guardnode'" >> ~/.bash_aliases
+echo "alias gnstart='$HOME/guardnode/run_guardnode'" >> ~/.bash_aliases
 # echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
 # echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
 
@@ -46,13 +46,13 @@ echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CB
 source ~/.bash_aliases
 
 ## Declare environment variables ##
-dgldnodestart="./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
-dgld="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
-dgldnodestop="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop"
+dgldnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
+dgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
+dgldnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop"
 
-cbtnodestart="./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
-cbt="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
-cbtnodestop="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
+cbtnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
+cbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
+cbtnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
 
 gnstart="exec $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 127.0.0.1:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile ../ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1 &"
 # gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
