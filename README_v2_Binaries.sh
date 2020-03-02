@@ -28,14 +28,21 @@
 set -x
 
 ## Save useful alias shortcuts for node functions ##
-echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
-echo "alias cbt='docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
-echo "alias nodestart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb'" >> ~/.bash_aliases
-echo "alias nodestop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb'" >> ~/.bash_aliases
-echo "alias gnstart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode'" >> ~/.bash_aliases
-echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
-echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
+echo "alias dgldnodestart='./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean'" >> ~/.bash_aliases
+echo "alias dgld='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
+echo "alias dgldnodestop='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop'" >> ~/.bash_aliases
+
+echo "alias cbtnodestart='./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb'" >> ~/.bash_aliases
+echo "alias cbt='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
+echo "alias cbtnodestop='./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop'" >> ~/.bash_aliases
+
+echo "alias gnstart='./guardnode/run_guardnode'" >> ~/.bash_aliases
+# echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
+# echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
+
 echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh'" >> ~/.bash_aliases
+
+## 
 source ~/.bash_aliases
 
 ## Declare environment variables ##
@@ -47,20 +54,11 @@ cbtnodestart="./ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
 cbt="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
 cbtnodestop="./ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
 
-gnstart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode"
-gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
-logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
+gnstart="exec $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 127.0.0.1:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile ../ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1 &"
+# gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
+# logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
+
 cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
-
-
-# Install GuardNode
-cd $HOME
-git clone https://github.com/commerceblock/guardnode
-cd guardnode
-sudo pip3 install -r requirements.txt
-sudo python3 setup.py build
-sudo python3 setup.py install
-
 
 # Install required libraries
 cd $HOME
@@ -96,25 +94,25 @@ dpkg-deb -R $HOME/$LATEST_RELEASE.deb $HOME/ocean/binaries/versions/$LATEST_RELE
 # Find and copy binaries
 find $HOME/ocean/binaries/versions/$LATEST_RELEASE -name "*ocean*" -type f -exec cp {} $HOME/ocean/ \;
 
-
-# Update Docker premissions to docker without mod
-sudo usermod -aG docker $USER
-source ~/.bash_aliases
+# Install GuardNode
+cd $HOME
+git clone https://github.com/commerceblock/guardnode
+cd guardnode
+sudo pip3 install -r requirements.txt
+sudo python3 setup.py build
+sudo python3 setup.py install
 
 # Add double-click to run in terminal
 gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
 # Start dgld & cbt nodes
-cd $HOME/dgld
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb
-sleep 4
+$dgldnodestart
+$cbtnodestart
 $dgld getblockchaininfo
 $cbt getblockchaininfo
 
 # Start guardnode
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
-sleep 4
-$logs guardnode
+$gnstart
 
 # Confirm exit command
 read -n 1 -s -r -p "Press any key to restart"
