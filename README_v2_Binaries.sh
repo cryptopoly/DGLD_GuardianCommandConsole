@@ -63,7 +63,7 @@ sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
 sudo apt install jq -y
-sudo apt install  -y
+sudo apt install curl -y
 sudo apt autoremove -y
 
 # Create folders
