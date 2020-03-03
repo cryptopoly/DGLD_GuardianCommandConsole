@@ -31,29 +31,25 @@ echo "alias dgldnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean'
 echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
 echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
 echo "alias dgldnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop'" >> ~/.bash_aliases
-
 echo "alias cbtnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb'" >> ~/.bash_aliases
 echo "alias cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
 echo "alias cbtnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop'" >> ~/.bash_aliases
-
 echo "alias gnstart='$HOME/guardnode/run_guardnode'" >> ~/.bash_aliases
 # echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
 # echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
 
 echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh'" >> ~/.bash_aliases
 
-## 
+## Force alias refresh
 source ~/.bash_aliases
 
 ## Declare environment variables ##
 dgldnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
 dgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
 dgldnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop"
-
 cbtnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
 cbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
 cbtnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
-
 gnstart="exec $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 127.0.0.1:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile ../ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1 &"
 # gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
 # logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
@@ -82,17 +78,24 @@ LATEST_RELEASE=$(curl -s https://api.github.com/repos/commerceblock/ocean/releas
 | awk '{print substr($2, 2, length($2)-3) }')
 URL=(https://github.com/commerceblock/ocean/releases/download/$LATEST_RELEASE/ocean-$LATEST_RELEASE.deb)
 
+echo $LATEST_RELEASE
+echo $URL
+
 # Create version folder and download deb
-mkdir $HOME/ocean/binaries/versions/$LATEST_RELEASE
+mkdir $HOME/ocean/binaries/$LATEST_RELEASE
 
 # Download .deb binaries
-curl -L -o $HOME/ocean/versions/$LATEST_RELEASE/$LATEST_RELEASE.deb $URL
+curl -L -o $HOME/ocean/binaries/$LATEST_RELEASE/$LATEST_RELEASE.deb $URL
 
 # Unpack binaries
-dpkg-deb -R $HOME/$LATEST_RELEASE.deb $HOME/ocean/binaries/versions/$LATEST_RELEASE/
+dpkg-deb -R $HOME/ocean/binaries/$LATEST_RELEASE/$LATEST_RELEASE.deb $HOME/ocean/binaries/$LATEST_RELEASE/
 
 # Find and copy binaries
-find $HOME/ocean/binaries/versions/$LATEST_RELEASE -name "*ocean*" -type f -exec cp {} $HOME/ocean/ \;
+find $HOME/ocean/binaries/$LATEST_RELEASE -name "*ocean*" -type f -exec cp {} $HOME/ocean/ \;
+
+# Clean up
+rm -r $HOME/ocean/binaries/$LATEST_RELEASE/usr
+rm -r $HOME/ocean/binaries/$LATEST_RELEASE/DEBIAN
 
 # Install GuardNode
 cd $HOME
