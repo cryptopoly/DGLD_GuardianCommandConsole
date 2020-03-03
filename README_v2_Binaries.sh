@@ -57,14 +57,14 @@ cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
 
 # Install required libraries
 cd $HOME
-sudo apt-get update -y
-sudo apt-get upgrade -y
+# sudo apt-get update -y
+# sudo apt-get upgrade -y
 sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
 sudo apt install jq -y
 sudo apt install curl -y
-sudo apt autoremove -y
+# sudo apt autoremove -y
 
 # Create folders
 mkdir $HOME/ocean
@@ -110,9 +110,9 @@ gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
 # Start dgld & cbt nodes
 $dgldnodestart &
-sleep 2
+sleep 3
 $cbtnodestart &
-sleep 2
+sleep 4
 $dgld getblockchaininfo
 $cbt getblockchaininfo
 
