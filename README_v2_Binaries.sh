@@ -1,6 +1,6 @@
 #### DGLD CBT Ocean Nodes and GuardNode kinda all-in-one script ####
 
-######## WARNING: USE AT YOUR OWN RISK - I HAVE NO IDEA WHAT I'M DOING! ########
+######## WARNING: USE AT YOUR OWN RISK - I HAVE NO IDEA WHAT I'M DOING - PLEASE MAKE SURE YOUR SEEDS AND KEYS ARE BACKED UP ########
 
 # CryptoRaptor
 # https://twitter.com/cryptopoly
