@@ -100,7 +100,7 @@ rm -r $HOME/ocean/binaries/$LATEST_RELEASE/DEBIAN
 cd $HOME
 git clone https://github.com/commerceblock/guardnode
 cd guardnode
-sudo apt install python3-pip
+sudo apt install python3-pip -y
 sudo pip3 install -r requirements.txt
 sudo python3 setup.py build
 sudo python3 setup.py install
