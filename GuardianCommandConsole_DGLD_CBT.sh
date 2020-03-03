@@ -48,7 +48,7 @@ then
 # Gold node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 if
 	[[ $gold_blockheight_node == '' ]]; then gold_blockheight_node=$"0"; fi
-while gold_blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
+while gold_blockheight_node=$($HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean getblockcount)
 (( $gold_blockheight_node < $gold_blockheight_exp ));
 do
 	printf "\033[1A"
@@ -77,7 +77,7 @@ then
 # CBT node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 if
 	[[ $cbt_blockheight_node == '' ]]; then cbt_blockheight_node=$"0"; fi
-while cbt_blockheight_node=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
+while cbt_blockheight_node=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getblockcount)
 (( $cbt_blockheight_node < $cbt_blockheight_exp ));
 do
 	printf "\033[1A"

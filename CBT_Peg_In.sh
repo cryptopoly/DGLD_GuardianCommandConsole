@@ -5,8 +5,8 @@ clear
 echo "CBT ERC-20 Peg-In to CBT Mainnet"
 echo ""
 echo 'CBT Balance:'
-docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance
-Balance=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getbalance)
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance
+Balance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance)
 echo ""
 echo "Step 1"
 echo "Export the private key of the ethereum address that owns the CBT tokens. This should be in hex format"
@@ -21,9 +21,9 @@ read ethcbtprivkey
 
 echo ""
 # echo ""
-eth_claim_pubkey=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getethpeginaddress $ethcbtprivkey |\
+eth_claim_pubkey=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getethpeginaddress $ethcbtprivkey |\
 jq -r '.eth_claim_pubkey')
-eth_mainchain_address=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getethpeginaddress $ethcbtprivkey |\
+eth_mainchain_address=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getethpeginaddress $ethcbtprivkey |\
 jq -r '.eth_mainchain_address')
 echo "Ethereum claim public key:"
 echo $eth_claim_pubkey
@@ -57,7 +57,7 @@ read cbtamount
 echo ""
 echo "Mainnet Tx broadcasted with Id:"
 echo -n "https://cbtexplorer.com/tx/"
-docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass claimethpegin $txid $cbtamount $eth_claim_pubkey
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb claimethpegin $txid $cbtamount $eth_claim_pubkey
 echo ""
 
 # Confirm to continue command

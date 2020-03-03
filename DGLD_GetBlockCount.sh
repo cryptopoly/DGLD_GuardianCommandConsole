@@ -2,7 +2,7 @@
 # set -x # debug
 
 echo 'BlockCount:'
-docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount
+$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean getblockcount
 
-BlockCount=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
+BlockCount=$($HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean getblockcount)
 # osascript -e 'display notification "BlockCount '$BlockCount'" with title "GoldNode"'

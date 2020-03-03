@@ -38,8 +38,8 @@ sudo python3 setup.py install
 cd $HOME/dgld
 docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
 sleep 2
-docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
-docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockchaininfo
+$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean getblockchaininfo
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getblockchaininfo
 
 
 curl -X GET https://api.etherscan.io/api?module=account&action=tokentx&contractaddress=0x076C97e1c869072eE22f8c91978C99B4bcB02591&address=0x9178afdf2fc2cbdde30290c0b49f040ff804e06c&page=1&offset=5&sort=desc&apikey=MRX1RQP9V1ZHXU5R9N14P4Q71NMCH4D7PF -d 'JSON_DATA'

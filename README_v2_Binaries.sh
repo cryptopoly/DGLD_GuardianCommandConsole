@@ -121,6 +121,8 @@ $gnstart
 sleep 2
 
 # Confirm exit command
-read -n 1 -s -r -p "Press any key to restart"
+read -n 1 -s -r -p "Press any key to continue to the DGLD_GuardianCommandConsole"
 echo ""
 echo ""
+
+$cc
