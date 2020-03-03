@@ -29,12 +29,11 @@ set -x
 ## Save useful alias shortcuts for node functions ##
 echo "alias dgldnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean'" >> ~/.bash_aliases
 echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
-echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
 echo "alias dgldnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop'" >> ~/.bash_aliases
 echo "alias cbtnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb'" >> ~/.bash_aliases
 echo "alias cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
 echo "alias cbtnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop'" >> ~/.bash_aliases
-echo "alias gnstart='$HOME/guardnode/run_guardnode'" >> ~/.bash_aliases
+echo "alias gnstart='$HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 127.0.0.1:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1'" >> ~/.bash_aliases
 # echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
 # echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
 
@@ -47,10 +46,10 @@ source ~/.bash_aliases
 dgldnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
 dgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
 dgldnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop"
-cbtnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
+cbtnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb"
 cbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
 cbtnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
-gnstart="exec $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 127.0.0.1:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile ../ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1 &"
+gnstart="$HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 127.0.0.1:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1"
 # gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
 # logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
 
@@ -64,7 +63,7 @@ sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
 sudo apt install jq -y
-sudo apt install curl -y
+sudo apt install  -y
 sudo apt autoremove -y
 
 # Create folders
@@ -101,6 +100,7 @@ rm -r $HOME/ocean/binaries/$LATEST_RELEASE/DEBIAN
 cd $HOME
 git clone https://github.com/commerceblock/guardnode
 cd guardnode
+sudo apt install python3-pip
 sudo pip3 install -r requirements.txt
 sudo python3 setup.py build
 sudo python3 setup.py install
@@ -109,17 +109,18 @@ sudo python3 setup.py install
 gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
 # Start dgld & cbt nodes
-$dgldnodestart
-$cbtnodestart
+$dgldnodestart &
+sleep 2
+$cbtnodestart &
+sleep 2
 $dgld getblockchaininfo
 $cbt getblockchaininfo
 
 # Start guardnode
 $gnstart
+sleep 2
 
 # Confirm exit command
 read -n 1 -s -r -p "Press any key to restart"
 echo ""
 echo ""
-
-shutdown -r
