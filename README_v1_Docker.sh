@@ -95,7 +95,18 @@ sudo apt autoremove -y
 sudo usermod -aG docker $USER
 source ~/.bash_aliases
 
-# Add double-click to run in terminal
-gsettings set org.gnome.nautilus.preferences executable-text-activation ask
+# Start docker nodes in new window with sudo
 
-$cc
+sudo gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
+
+# Confirm exit command
+read -n 1 -s -r -p "You MUST restart before you can run the Guardian Command Console - Press any key to restart"
+
+shutdown -r
+
+fi
+done
+
+
+
+

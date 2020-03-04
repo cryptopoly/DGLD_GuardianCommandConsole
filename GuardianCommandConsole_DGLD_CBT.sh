@@ -18,7 +18,7 @@ cd $HOME/DGLD_GuardianCommandConsole
 ./Start_Nodes.sh
 
 while true; do
-clear
+# clausear
 echo "Welcome to the DGLD-CBT GuardNode Command Console - Docker Edition"
 # Current date
 echo -n "Date: "
