@@ -103,10 +103,3 @@ sudo gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/doc
 read -n 1 -s -r -p "You MUST restart before you can run the Guardian Command Console - Press any key to restart"
 
 shutdown -r
-
-fi
-done
-
-
-
-
