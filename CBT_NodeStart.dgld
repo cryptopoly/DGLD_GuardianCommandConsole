@@ -1,3 +1,4 @@
+#!/bin/bash 
 # set -x # debug
 
 export cbtnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb"
@@ -8,13 +9,10 @@ cbt_main_status=$(ps -aux | grep -w "ocean-cb" | grep -v grep | awk '{ print "On
 
 if [[ $cbt_main_status = "Online" ]]
 then
-	echo "CBT Ocean server online"
-	sleep 2
-	echo ""
+	# echo "CBT Ocean server online"
+	sleep 0
 else
+	echo "Starting CBT node (binaries)..."
 	$cbtnodestart &
-	echo "CBT Ocean server starting..."
-	echo -e
 	sleep 2
-	echo ""
 fi

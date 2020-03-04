@@ -1,5 +1,9 @@
+#!/bin/bash 
 # set -x # debug
 
-killall oceand
+# Kill docker & binaries processes before update
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld
+
 cd $HOME/DGLD_GuardianCommandConsole
 git pull origin master

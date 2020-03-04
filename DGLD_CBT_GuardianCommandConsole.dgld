@@ -1,3 +1,4 @@
+#!/bin/bash 
 # set -x # debug
 
 # script Log.txt
@@ -21,13 +22,12 @@ AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
 
 # Kill docker processes before running binaries command console
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode ocean ocean-cb
-pids=$(pgrep docker);sudo kill $pids &
-sleep 2
+echo "Reticulating splines..."
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh
 
 ## Start DGLD, CBT and GuardNode nodes ##
 cd $HOME/DGLD_GuardianCommandConsole
-# $HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld
+./Start_Nodes.dgld
 
 
 # Loop CC
@@ -44,6 +44,7 @@ dgld_main_status=$(ps -aux | grep -w "ocean" | grep -v "ocean-cb" | grep -v guar
 # echo "$dgld_main_status"
 cbt_main_status=$(ps -aux | grep -w "ocean-cb" | grep -v grep | awk '{ print "Online" }')
 # echo "$cbt_main_status"
+
 
 # DGLD Sync Status
 echo -n "DGLD Node Status: "

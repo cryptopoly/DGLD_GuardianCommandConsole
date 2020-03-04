@@ -1,3 +1,5 @@
+#!/bin/bash 
+
 #### DGLD CBT Ocean Nodes and GuardNode kinda all-in-one script ####
 
 ######## WARNING: USE AT YOUR OWN RISK - I HAVE NO IDEA WHAT I'M DOING! ########
@@ -25,13 +27,19 @@
 ######### INSTALL_SCRIPT ########
 
 # Log stuff for troubleshooting
-# set -x
+set -x
 
 # Stop/kill all related processes before install
-pids=$(pgrep docker);sudo kill $pids &
-killall oceand &
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld
+
+# Clear previous aliases
+sed -i '/ocean/d' ~/.bash_aliases
+sed -i '/dgld/d' ~/.bash_aliases
+sed -i '/docker/d' ~/.bash_aliases
 
 ## Save useful alias shortcuts for node functions ##
+# Docker aliases
 echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
 echo "alias cbt='docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
 echo "alias nodestart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb'" >> ~/.bash_aliases
@@ -40,6 +48,22 @@ echo "alias gnstart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docke
 echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
 echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
 echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh'" >> ~/.bash_aliases
+
+
+# Binaries aliases
+echo "alias b_dgldnodestart='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias b_dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
+echo "alias b_dgldnodestop='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias b_cbtnodestart='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias b_cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
+echo "alias b_cbtnodestop='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias b_gnstart='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias b_gnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias b_allnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
+echo "alias b_allnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
+echo "alias b_cc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
+
+# Force alias update
 source ~/.bash_aliases	
 
 ## Declare environment variables ##
@@ -52,13 +76,6 @@ export gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-comp
 export logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
 export cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
 
-
-
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb guardnode
-pids=$(pgrep docker);sudo kill $pids &
-killall oceand &
-killall guardnode &
 
 ## Declare environment variables ##
 # $HOME/DGLD_GuardianCommandConsole/Variables.sh
@@ -81,21 +98,4 @@ source ~/.bash_aliases
 # Add double-click to run in terminal
 gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
-# Start dgld & cbt nodes
-cd $HOME/dgld
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb
-sleep 4
-$dgld getblockchaininfo
-$cbt getblockchaininfo
-
-# Start guardnode
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
-sleep 4
-$logs guardnode
-
-# Confirm exit command
-read -n 1 -s -r -p "Press any key to restart"
-echo ""
-echo ""
-
-shutdown -r
+$cc

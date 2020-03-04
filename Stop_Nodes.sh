@@ -1,4 +1,7 @@
+#!/bin/bash 
  # set -x # debug
+
+# echo "Stopping Docker Nodes"
 
 # Check for dgld and cbt node daemons
 gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
@@ -8,10 +11,11 @@ ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ pr
 
 if [[ $gold_main_status = "Online" ]] && [[ $ocean_main_status = "Online" ]]
 then
-	killall oceand
-	echo "DGLD and CBT Ocean servers stopping"
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode
 	sleep 2
+	echo ""
 else
-	echo "DGLD and CBT Ocean servers are not currently running"
-
+	echo -n ""
+	# echo "DGLD, CBT GuardNode servers are not currently running (docker)"
 fi

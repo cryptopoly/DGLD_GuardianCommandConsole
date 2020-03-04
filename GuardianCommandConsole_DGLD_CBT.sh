@@ -1,11 +1,7 @@
+#!/bin/bash 
 # set -x # debug
 
 # script Log.txt
-
-clear
-cd $HOME/DGLD_GuardianCommandConsole
-./Start_Nodes.sh
-
 
 RED='\033[0;31m'
 AMBER='\033[0;33m'
@@ -13,11 +9,13 @@ NC='\033[0m' # No Colour
 
 
 # Kill binaries processes before running docker command console
-$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld
-$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld
-$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld
-killall oceand
-sleep 2
+echo "Reticulating splines..."
+echo ""
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld
+
+## Start Docker DGLD, CBT and GuardNode - Docker Editions ##
+cd $HOME/DGLD_GuardianCommandConsole
+./Start_Nodes.sh
 
 while true; do
 clear
@@ -25,8 +23,6 @@ echo "Welcome to the DGLD-CBT GuardNode Command Console - Docker Edition"
 # Current date
 echo -n "Date: "
 date -u 
-echo ""
-
 
 # Check for dgld and cbt node daemons
 gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
@@ -35,7 +31,8 @@ ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ pr
 # echo "$ocean_main_status"
 
 # DGLD Sync Status
-echo -n "Gold Node Status: "
+echo ""
+echo -n "DGLD Node Status: "
 echo $gold_main_status
 if test $gold_main_status > 0 ; 
 then

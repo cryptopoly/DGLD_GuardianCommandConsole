@@ -1,3 +1,4 @@
+#!/bin/bash 
  
 # set -x # debug
 
@@ -9,10 +10,10 @@ ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ pr
 
 if [[ $gold_main_status = "Online" ]] && [[ $ocean_main_status = "Online" ]]
 then
-	echo "DGLD and CBT Ocean servers online"
+	# echo "DGLD and CBT Ocean nodes online (docker)"
+	sleep 0
 else
-	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d &
-	echo "DGLD and CBT Ocean servers starting..."
-	echo -e
+	echo "DGLD, CBT and GuardNode Ocean docker services starting..."
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
 	sleep 8
 fi

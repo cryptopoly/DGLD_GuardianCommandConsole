@@ -1,3 +1,4 @@
+#!/bin/bash 
 # set -x # debug
 
 export dgldnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
@@ -8,14 +9,11 @@ dgld_main_status=$(ps -aux | grep -w "ocean" | grep -v "ocean-cb" | grep -v guar
 
 if [[ $dgld_main_status = "Online" ]]
 then
-	echo "DGLD Ocean server online"
-	sleep 2
-	echo ""
+	# echo "DGLD Ocean server online"
+	sleep 0
 else
+	echo "Starting DGLD node (binaries)..."
 	$dgldnodestart &
-	echo "DGLD Ocean server starting..."
-	echo -e
 	sleep 2
-	echo ""
 fi
 

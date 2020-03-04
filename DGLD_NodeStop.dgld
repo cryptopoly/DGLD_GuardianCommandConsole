@@ -1,3 +1,4 @@
+#!/bin/bash 
 # set -x # debug
 
 export dgldnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop"
@@ -8,11 +9,10 @@ dgld_main_status=$(ps -aux | grep -w "ocean" | grep -v "ocean-cb" | grep -v guar
 
 if [[ $dgld_main_status = "Online" ]]
 then
+	echo "Stopping DGLD node (binaries)"
 	$dgldnodestop
-	echo "DGLD Ocean server stopping..."
-	echo -e
 	sleep 2
 else
-	echo "DGLD Ocean server offline"
-	sleep 2
+	# echo "DGLD Ocean server offline"
+	sleep 1
 fi

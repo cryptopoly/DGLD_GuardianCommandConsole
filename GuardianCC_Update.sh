@@ -1,3 +1,4 @@
+#!/bin/bash 
  # set -x # debug
 
 # Kill any related processes before update

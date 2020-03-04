@@ -1,3 +1,5 @@
+#!/bin/bash 
+
 # set -x # debug
 
 echo 'CBT Command List'

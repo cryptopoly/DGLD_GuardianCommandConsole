@@ -1,18 +1,18 @@
+#!/bin/bash 
 # set -x # debug
 
 export gnstop="killall python3"
 
 # Check for GuardNode status and kick off if off
 guardnode_status=$(pgrep python3 | awk '{ print "Online" }')
-echo ""
 # echo $guardnode_status
+
 if [[ $guardnode_status = "Online" ]]
 then
+	echo "Stopping GuardNode (binaries)"
 	$gnstop
-	echo "GuardNode server stopping..."
-	echo -e
 	sleep 2
 else
-	echo "GuardNode server online"
-	sleep 2
+	# echo "GuardNode server online"
+	sleep 1
 fi

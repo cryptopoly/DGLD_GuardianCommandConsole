@@ -1,3 +1,4 @@
+#!/bin/bash 
 # set -x # debug
 
 export cbtnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
@@ -8,11 +9,10 @@ cbt_main_status=$(ps -aux | grep -w "ocean-cb" | grep -v grep | awk '{ print "On
 
 if [[ $cbt_main_status = "Online" ]]
 then
-	$cbtnodestop &
-	echo "CBT Ocean server stopping..."
-	echo -e
+	echo "Stopping CBT node (binaries)"
+	$cbtnodestop
 	sleep 2
 else
-	echo "CBT Ocean server offline"
-	sleep 2
+	# echo "CBT Ocean server offline"
+	sleep 1
 fi

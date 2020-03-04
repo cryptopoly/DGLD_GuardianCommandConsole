@@ -1,3 +1,4 @@
+#!/bin/bash 
 # jq '.assets,.ref' $HOME/j.json
 
 
