@@ -1,0 +1,9 @@
+# set -x # debug
+
+cd $HOME/DGLD_GuardianCommandConsole
+
+$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld
+
+$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld
+
+$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld

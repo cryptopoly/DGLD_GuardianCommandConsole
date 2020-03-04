@@ -2,4 +2,4 @@
 # set -x # debug
 
 echo 'UTXO Asset Info'
-$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean getutxoassetinfo
+docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getutxoassetinfo

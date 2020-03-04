@@ -1,0 +1,8 @@
+ 
+# set -x # debug
+
+echo 'BlockCount:'
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getblockcount
+
+BlockCount=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getblockcount)
+# osascript -e 'display notification "BlockCount '$BlockCount'" with title "GoldNode"'

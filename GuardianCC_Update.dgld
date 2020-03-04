@@ -1,0 +1,5 @@
+# set -x # debug
+
+killall oceand
+cd $HOME/DGLD_GuardianCommandConsole
+git pull origin master

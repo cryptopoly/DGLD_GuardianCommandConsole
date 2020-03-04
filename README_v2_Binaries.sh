@@ -16,44 +16,55 @@
 # Step 5 - Restart the VPS once all installed to ensure settings are fully applied
 
 # TERMINAL SHORTCUTS/COMMANDS:
-# 'cc' shortcut to open the command console
+# 'b_cc' shortcut to open the command console
 # '00' to exit the command console
-# 'dgld' and 'cbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
-# 'nodestart' or 'nodestop' to launch/kill both nodes
+# 'b_dgld' and 'b_cbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
+# 'b_allnodestart' or 'b_allnodestop' to launch/kill all nodes
 
 ######### INSTALL_SCRIPT ########
 
 # Log stuff for troubleshooting
-set -x
+# set -x
+
+# Kill docker & binaries processes before install
+pids=$(pgrep docker);sudo kill $pids &
+killall oceand &
+
+# Clear previous aliases
+# sed -i '/ocean/d' ~/.bash_aliases
+# sed -i '/dgld/d' ~/.bash_aliases
+# sed -i '/docker/d' ~/.bash_aliases
 
 ## Save useful alias shortcuts for node functions ##
-echo "alias dgldnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean'" >> ~/.bash_aliases
-echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
-echo "alias dgldnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop'" >> ~/.bash_aliases
-echo "alias cbtnodestart='$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb'" >> ~/.bash_aliases
-echo "alias cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
-echo "alias cbtnodestop='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop'" >> ~/.bash_aliases
-echo "alias gnstart='$HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1'" >> ~/.bash_aliases
-# echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
-# echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
+echo "alias b_dgldnodestart='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias b_dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
+echo "alias b_dgldnodestop='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias b_cbtnodestart='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias b_cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
+echo "alias b_cbtnodestop='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias b_gnstart='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias b_gnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias b_allnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
+echo "alias b_allnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
+echo "alias b_cc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
 
-echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh'" >> ~/.bash_aliases
 
 ## Force alias refresh
 source ~/.bash_aliases
 
 ## Declare environment variables ##
-dgldnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
-dgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
-dgldnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean stop"
-cbtnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb"
-cbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
-cbtnodestop="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb stop"
-gnstart="$HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1"
-# gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
-# logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
+export b_dgldnodestart="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld"
+export b_dgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
+export b_dgldnodestop="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld"
+export b_cbtnodestart="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld"
+export b_cbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
+export b_cbtnodestop="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld"
+export b_gnstart="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld"
+export b_gnstop="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld"
+export b_allnodestart="$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld"
+export b_allnodestop="$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld"
+export b_cc="$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld"
 
-cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
 
 # Install required libraries
 cd $HOME
@@ -92,6 +103,9 @@ dpkg-deb -R $HOME/ocean/binaries/$LATEST_RELEASE/$LATEST_RELEASE.deb $HOME/ocean
 # Find and copy binaries
 find $HOME/ocean/binaries/$LATEST_RELEASE -name "*ocean*" -type f -exec cp {} $HOME/ocean/ \;
 
+# Add whitelist to conf
+# echo "pkwhitelist=1" >> ~$HOME/dgld/mainnet/ocean/
+
 # Clean up
 rm -r $HOME/ocean/binaries/$LATEST_RELEASE/usr
 rm -r $HOME/ocean/binaries/$LATEST_RELEASE/DEBIAN
@@ -108,21 +122,6 @@ sudo python3 setup.py install
 # Add double-click to run in terminal
 gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
-# Start dgld & cbt nodes
-$dgldnodestart &
-sleep 3
-$cbtnodestart &
-sleep 4
-$dgld getblockchaininfo
-$cbt getblockchaininfo
-
-# Start guardnode
-$gnstart
-sleep 2
-
-# Confirm exit command
-read -n 1 -s -r -p "Press any key to continue to the DGLD_GuardianCommandConsole"
-echo ""
-echo ""
+$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld
 
 $cc

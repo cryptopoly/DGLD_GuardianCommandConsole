@@ -12,10 +12,16 @@ AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
 
 
+# Kill binaries processes before running docker command console
+$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld
+$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld
+$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld
+killall oceand
+sleep 2
 
 while true; do
 clear
-echo "Welcome to the DGLD-CBT GuardNode Command Console"
+echo "Welcome to the DGLD-CBT GuardNode Command Console - Docker Edition"
 # Current date
 echo -n "Date: "
 date -u 
@@ -27,8 +33,6 @@ gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ prin
 # echo "$gold_main_status"
 ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
 # echo "$ocean_main_status"
-
-
 
 # DGLD Sync Status
 echo -n "Gold Node Status: "
@@ -48,7 +52,7 @@ then
 # Gold node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 if
 	[[ $gold_blockheight_node == '' ]]; then gold_blockheight_node=$"0"; fi
-while gold_blockheight_node=$($HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean getblockcount)
+while gold_blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
 (( $gold_blockheight_node < $gold_blockheight_exp ));
 do
 	printf "\033[1A"
@@ -77,7 +81,7 @@ then
 # CBT node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 if
 	[[ $cbt_blockheight_node == '' ]]; then cbt_blockheight_node=$"0"; fi
-while cbt_blockheight_node=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getblockcount)
+while cbt_blockheight_node=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
 (( $cbt_blockheight_node < $cbt_blockheight_exp ));
 do
 	printf "\033[1A"
@@ -122,4 +126,3 @@ echo ""
 
 fi
 done
-

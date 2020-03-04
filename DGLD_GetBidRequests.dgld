@@ -1,0 +1,6 @@
+ 
+# set -x # debug
+
+echo 'Get Bid Requests'
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getbidrequests
+echo ""

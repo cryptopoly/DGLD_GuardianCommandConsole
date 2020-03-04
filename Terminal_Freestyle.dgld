@@ -1,0 +1,7 @@
+ 
+# set -x # debug
+
+echo "Enter terminal command e.g. killall oceand, ('00' to exit)"
+read freestyle
+$freestyle
+echo ""

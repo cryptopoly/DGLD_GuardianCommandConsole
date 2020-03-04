@@ -1,0 +1,21 @@
+# set -x # debug
+
+export dgldnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
+
+# Check for DGLD node status and kick off if off
+dgld_main_status=$(ps -aux | grep -w "ocean" | grep -v "ocean-cb" | grep -v guardnode | grep -v grep | awk '{ print "Online" }')
+#echo $dgld_main_status
+
+if [[ $dgld_main_status = "Online" ]]
+then
+	echo "DGLD Ocean server online"
+	sleep 2
+	echo ""
+else
+	$dgldnodestart &
+	echo "DGLD Ocean server starting..."
+	echo -e
+	sleep 2
+	echo ""
+fi
+
