@@ -10,10 +10,10 @@ GCC will automatically stop conflicting services when switching from GCC Docker 
 # Docker Version (v1)
 See README_v1_Docker.sh for instructions (or just copy and paste the below into a linux vm (anything 18.04 and up))
 
-sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README_v2_Docker.sh | bash
+sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README_v1_Docker.sh | bash
 
 
 # Binaries Version (v1)
 See README_v2_Binaries.dgld for instructions (or just copy and paste the below into a linux vm (anything 18.04 and up))
 
-sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README_v2_Binaries.sh | bash
+sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README_v2_Binaries.dgld | bash
