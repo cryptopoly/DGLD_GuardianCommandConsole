@@ -98,4 +98,5 @@ source ~/.bash_aliases
 # Add double-click to run in terminal
 gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
-$cc
+$HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
+
