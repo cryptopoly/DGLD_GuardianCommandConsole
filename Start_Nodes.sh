@@ -14,6 +14,7 @@ then
 	sleep 0
 else
 	echo "DGLD, CBT and GuardNode Ocean docker services starting..."
-	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
-	sleep 8
+	gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d
+	sleep 2
 fi
+

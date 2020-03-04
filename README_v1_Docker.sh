@@ -100,6 +100,14 @@ source ~/.bash_aliases
 sudo gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
 
 # Confirm exit command
+echo ""
+echo ""
+echo ""
+echo ""
 read -n 1 -s -r -p "You MUST restart before you can run the Guardian Command Console - Press any key to restart"
+echo ""
+echo ""
+echo ""
+echo ""
 
-shutdown -r
+# shutdown -r
