@@ -106,7 +106,7 @@ $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
 =======
 # Start docker nodes in new window with sudo
 
-# sudo gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
+# sudo gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up &
 sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
 
 # Confirm exit command
