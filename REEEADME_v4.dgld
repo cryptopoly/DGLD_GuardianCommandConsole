@@ -29,8 +29,8 @@
 # set -x
 
 # Kill docker & binaries processes before install
-$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh
-$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh &
+$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld &
 
 # Clear previous aliases
 sed -i '/ocean/d' ~/.bash_aliases
