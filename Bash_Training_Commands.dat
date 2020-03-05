@@ -10,25 +10,25 @@ $HOME/CryptopoTools = /home/my-pc/CryptopoTools
 pgrep oceand 
 
 # Check for oceand running process - remove the process entry of checking
-ps -ef | grep -w oceand | grep -v grep
+ps -efT | grep -w oceand | grep -v grep
 
 # Check for oceand running process - remove the process entry of checking
-ps -ef | grep oceand | grep -v grep | awk '{ print $2 }'
+ps -efT | grep oceand | grep -v grep | awk '{ print $2 }'
 
 # Kill all docker related processes
 pids=$(pgrep docker);sudo kill $pids &
 
 # Check for ocean and dgld node daemons
-ps -ef | grep -w oceand | grep -v grep | awk '{ print $10 }'
+ps -efT | grep -w oceand | grep -v grep | awk '{ print $10 }'
 
 ps aux | grep oceand | grep -v grep
 
 # Match specific process details
-ps -ef | grep -w "/mainnet/ocean"
-ps -ef | grep -w "/mainnet/ocean-cb"
+ps -efT | grep -w "/mainnet/ocean"
+ps -efT | grep -w "/mainnet/ocean-cb"
 
 # oceand process (also by removing grep)
-kill $(ps -ef | grep oceand | grep -v grep | awk '{ print $2 }')
+kill $(ps -efT | grep oceand | grep -v grep | awk '{ print $2 }')
 
 # Returns oceand program id only
 pgrep oceand

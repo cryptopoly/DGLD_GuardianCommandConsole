@@ -36,9 +36,10 @@ $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld &
 sed -i '/ocean/d' ~/.bash_aliases
 sed -i '/dgld/d' ~/.bash_aliases
 sed -i '/docker/d' ~/.bash_aliases
+sed -i '/guardian/d' ~/.bash_aliases
 
 # Remove existing $HOME/DGLD_GuardianCommandConsole folder
-rm -r -f $HOME/DGLD_GuardianCommandConsole
+# rm -r -f $HOME/DGLD_GuardianCommandConsole
 
 ## Save useful alias shortcuts for node functions ##
 # Docker aliases
@@ -64,7 +65,7 @@ echo "alias bgnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'"
 echo "alias ballnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
 echo "alias ballnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
 echo "alias bcc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
-
+echo "alias bc='$HOME/DGLD_GuardianCommandConsole/'" >> ~/.bash_aliases
 # Force alias update
 source ~/.bash_aliases	
 
