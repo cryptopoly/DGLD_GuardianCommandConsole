@@ -98,9 +98,8 @@ sudo apt autoremove -y
 sudo usermod -aG docker $USER
 source ~/.bash_aliases
 
-<<<<<<< HEAD
 # Add double-click to run in terminal
-gsettings set org.gnome.nautilus.preferences executable-text-activation ask
+# gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
 $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
 
