@@ -29,7 +29,6 @@ $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh
 cd $HOME/DGLD_GuardianCommandConsole
 ./Start_Nodes.dgld
 
-
 # Loop CC
 while true; do
 clear
@@ -45,13 +44,13 @@ dgld_main_status=$(ps -aux | grep -w "ocean" | grep -v "ocean-cb" | grep -v guar
 cbt_main_status=$(ps -aux | grep -w "ocean-cb" | grep -v grep | awk '{ print "Online" }')
 # echo "$cbt_main_status"
 
-
 # DGLD Sync Status
+echo ""
 echo -n "DGLD Node Status: "
-# echo $dgld_main_status
-if test $dgld_main_status = "Online" ; 
+echo $dgld_main_status
+if test $dgld_main_status = "Online" ;  
 then
-	# DGLD explorer blockheight via API
+	# DGLD.ch explorer blockheight via API
 	echo -n "DGLD Explorer Blockheight: "
 	dgld_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info |\
 	jq '.blockheight')
@@ -68,16 +67,14 @@ then
 		echo ""
 	done
 		printf "\033[1A"
-		echo -ne "Local DGLD Node Blockheight: "; echo $dgld_blockheight_node;
-	else printf "${RED}Node not running${NC}"
-		echo ""
+		echo -ne "Local DGLD Node Blockheight: "; echo $dgld_blockheight_node; echo ""
+	else printf "${RED}Node not running${NC}"; echo ""
 	fi
-	echo ""
 
 # CBT Sync Status
 echo -n "CBT Node Status: "
-# echo $cbt_main_status
-if test $cbt_main_status = "Online" ; 
+echo $cbt_main_status
+if test $cbt_main_status = "Online";
 then
 	# CBT explorer blockheight via API
 	echo -n "CBT Explorer Blockheight: "
@@ -98,9 +95,7 @@ then
 		printf "\033[1A"
 		echo -ne "Local CBT Node Blockheight: "; echo $cbt_blockheight_node;
 	else printf "${RED}Node not running${NC}"; echo ""
-		echo ""
 	fi
-	echo ""
 
 
 # Show Menu

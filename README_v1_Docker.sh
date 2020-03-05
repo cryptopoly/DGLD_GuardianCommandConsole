@@ -101,13 +101,11 @@ source ~/.bash_aliases
 # Add double-click to run in terminal
 # gsettings set org.gnome.nautilus.preferences executable-text-activation ask
 
-$HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
-
-=======
+# Start docker nodes
+sudo $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
 # Start docker nodes in new window with sudo
-
 # sudo gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up &
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
+
 
 # Confirm exit command
 echo ""
