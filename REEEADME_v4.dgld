@@ -12,7 +12,7 @@
 
 # Noobs
 # Step 1 - Open terminal
-# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README_v2_Binaries.sh | bash'
+# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.sh | bash'
 # Step 3 - Enter password
 # Step 4 - Enter 'y'
 # Step 5 - Restart the VPS once all installed to ensure settings are fully applied
@@ -91,7 +91,7 @@ sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
 sudo apt install docker -y
-sudo apt install docker-compose
+sudo apt install docker-compose -y
 sudo apt install jq -y
 sudo apt install curl -y
 # sudo apt autoremove -y
@@ -139,6 +139,6 @@ sudo python3 setup.py build
 sudo python3 setup.py install
 
 # Download and kick off Docker stuff (legacy) 
-$HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
+sudo $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
  
 $bcc
