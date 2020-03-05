@@ -18,10 +18,10 @@
 # Step 5 - Restart the VPS once all installed to ensure settings are fully applied
 
 # TERMINAL SHORTCUTS/COMMANDS:
-# 'b_cc' shortcut to open the command console
+# 'bcc' shortcut to open the command console
 # '00' to exit the command console
-# 'b_dgld' and 'b_cbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
-# 'b_allnodestart' or 'b_allnodestop' to launch/kill all nodes
+# 'bdgld' and 'bcbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
+# 'ballnodestart' or 'ballnodestop' to launch/kill all nodes
 
 ######### INSTALL_SCRIPT ########
 
@@ -53,34 +53,34 @@ echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CB
 
 
 # Binaries aliases
-echo "alias b_dgldnodestart='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld'" >> ~/.bash_aliases
-echo "alias b_dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
-echo "alias b_dgldnodestop='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias b_cbtnodestart='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld'" >> ~/.bash_aliases
-echo "alias b_cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
-echo "alias b_cbtnodestop='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias b_gnstart='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld'" >> ~/.bash_aliases
-echo "alias b_gnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias b_allnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
-echo "alias b_allnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
-echo "alias b_cc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
+echo "alias bdgldnodestart='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias bdgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
+echo "alias bdgldnodestop='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias bcbtnodestart='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias bcbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
+echo "alias bcbtnodestop='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias bgnstart='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias bgnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'" >> ~/.bash_aliases
+echo "alias ballnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
+echo "alias ballnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
+echo "alias bcc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
 
 # Force alias update
 source ~/.bash_aliases	
 
 
 ## Declare environment variables ##
-export b_dgldnodestart="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld"
-export b_dgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
-export b_dgldnodestop="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld"
-export b_cbtnodestart="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld"
-export b_cbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
-export b_cbtnodestop="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld"
-export b_gnstart="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld"
-export b_gnstop="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld"
-export b_allnodestart="$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld"
-export b_allnodestop="$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld"
-export b_cc="$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld"
+export bdgldnodestart="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld"
+export bdgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
+export bdgldnodestop="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld"
+export bcbtnodestart="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld"
+export bcbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
+export bcbtnodestop="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld"
+export bgnstart="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld"
+export bgnstop="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld"
+export ballnodestart="$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld"
+export ballnodestop="$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld"
+export bcc="$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld"
 
 
 # Install required libraries
@@ -139,4 +139,4 @@ sudo python3 setup.py install
 # Download and kick off Docker stuff (legacy) 
 $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
  
-$b_cc
+$bcc
