@@ -30,15 +30,22 @@
 # Log stuff for troubleshooting
 set -x
 
+# Shallow brew fix
+# git -C "$(brew --repo homebrew/core)" fetch --unshallow
+
+# MacOS requirements
+# brew update && brew upgrade
+# brew uninstall --ignore-dependencies openssl; brew install https://github.com/tebelorg/Tump/releases/download/v1.0.0/openssl.rb
+# brew reinstall python
+# brew install dpkg
+# sudo install -d -o $(whoami) -g admin /usr/local/Frameworks
+
 # Kill docker & binaries processes before install
 $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh &
 $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld &
 
-# Clear previous aliases
-sed -i '/ocean/d' ~/.bash_aliases
-sed -i '/dgld/d' ~/.bash_aliases
-sed -i '/docker/d' ~/.bash_aliases
-sed -i '/guardian/d' ~/.bash_aliases
+# Clear aliases
+grep -v "" ~/.bash_aliases > ~/.bash_aliases
 
 # Remove existing $HOME/DGLD_GuardianCommandConsole folder
 # rm -r -f $HOME/DGLD_GuardianCommandConsole
@@ -67,7 +74,7 @@ echo "alias bgnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'"
 echo "alias ballnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
 echo "alias ballnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
 echo "alias bcc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
-echo "alias bc='$HOME/DGLD_GuardianCommandConsole/'" >> ~/.bash_aliases
+echo "alias bccd='$HOME/DGLD_GuardianCommandConsole/'" >> ~/.bash_aliases
 # Force alias update
 source ~/.bash_aliases	
 

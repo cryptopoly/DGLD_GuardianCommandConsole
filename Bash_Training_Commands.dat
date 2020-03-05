@@ -5,6 +5,8 @@ $HOME
 # Example
 $HOME/CryptopoTools = /home/my-pc/CryptopoTools
 
+# Remove lines from file macthing
+grep -v "ocean" ~/.bash_aliases > ~/.bash_aliases
 
 # Check for oceand running process
 pgrep oceand 
