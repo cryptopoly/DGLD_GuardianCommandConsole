@@ -37,6 +37,9 @@ sed -i '/ocean/d' ~/.bash_aliases
 sed -i '/dgld/d' ~/.bash_aliases
 sed -i '/docker/d' ~/.bash_aliases
 
+# Remove existing $HOME/DGLD_GuardianCommandConsole folder
+rm -r -f $HOME/DGLD_GuardianCommandConsole
+
 ## Save useful alias shortcuts for node functions ##
 # Docker aliases
 echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
