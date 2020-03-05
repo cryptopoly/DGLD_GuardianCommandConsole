@@ -90,6 +90,8 @@ cd $HOME
 sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
+sudo apt install docker -y
+sudo apt install docker-compose
 sudo apt install jq -y
 sudo apt install curl -y
 # sudo apt autoremove -y
