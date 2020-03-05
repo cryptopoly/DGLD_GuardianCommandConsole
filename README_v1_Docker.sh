@@ -38,6 +38,9 @@ sed -i '/ocean/d' ~/.bash_aliases
 sed -i '/dgld/d' ~/.bash_aliases
 sed -i '/docker/d' ~/.bash_aliases
 
+# Remove existing $HOME/DGLD_GuardianCommandConsole folder
+rm -r -f $HOME/DGLD_GuardianCommandConsole
+
 ## Save useful alias shortcuts for node functions ##
 # Docker aliases
 echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
@@ -112,10 +115,10 @@ echo ""
 echo ""
 echo ""
 echo ""
-read -n 1 -s -r -p "You MUST restart before you can run the Guardian Command Console - Press any key to restart"
+read -n 1 -s -r -p "Guardian Command Console will crash unless system is restarted - press any key to restart"
 echo ""
 echo ""
 echo ""
 echo ""
 
-# shutdown -r
+shutdown -r 0
