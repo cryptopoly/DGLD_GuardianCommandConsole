@@ -2,7 +2,9 @@
 
 #### DGLD CBT Ocean Nodes and GuardNode kinda all-in-one script ####
 
+
 ######## WARNING: USE AT YOUR OWN RISK - I HAVE NO IDEA WHAT I'M DOING! ########
+
 
 # CryptoRaptor
 # https://twitter.com/cryptopoly
@@ -26,7 +28,7 @@
 ######### INSTALL_SCRIPT ########
 
 # Log stuff for troubleshooting
-# set -x
+set -x
 
 # Kill docker & binaries processes before install
 $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh &
