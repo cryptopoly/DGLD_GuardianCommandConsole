@@ -136,7 +136,4 @@ sudo pip3 install -r requirements.txt
 sudo python3 setup.py build
 sudo python3 setup.py install
 
-# Add double-click to run in terminal
-gsettings set org.gnome.nautilus.preferences executable-text-activation ask
-
 $b_cc
