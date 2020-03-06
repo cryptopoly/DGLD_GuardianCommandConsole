@@ -10,7 +10,7 @@ echo "$ocean_main_status"
 
 
 # MacOS Only
-open /Applications/Docker.app &
+# open /Applications/Docker.app &
 
 if [[ $gold_main_status = "Online" ]] && [[ $ocean_main_status = "Online" ]]
 then
@@ -20,7 +20,9 @@ else
 	echo "DGLD, CBT and GuardNode Ocean docker services starting..."
 	# gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
 	# nohup docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up &
-	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up &
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
 	# nohup docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up $HOME/DGLD_GuardianCommandConsole/GuardNodeLogs.txt &
 	sleep 4
 fi

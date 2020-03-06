@@ -2,6 +2,9 @@
 # set -x # debug
 
 # script Log.txt
+# Force alias update
+
+source ~/.bash_aliases
 
 ## Declare environment variables ##
 export b_dgldnodestart="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld"

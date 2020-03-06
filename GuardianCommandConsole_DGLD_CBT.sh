@@ -10,6 +10,9 @@ NC='\033[0m' # No Colour
 # Force alias update
 source ~/.bash_aliases
 
+# Force alias update
+source ~/.bash_aliases
+
 # Kill binaries processes before running docker command console
 echo "Reticulating splines..."
 echo ""
