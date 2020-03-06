@@ -37,8 +37,14 @@ set -x
 # brew update && brew upgrade
 # brew uninstall --ignore-dependencies openssl; brew install https://github.com/tebelorg/Tump/releases/download/v1.0.0/openssl.rb
 # brew reinstall python
-# brew install dpkg
-# sudo install -d -o $(whoami) -g admin /usr/local/Frameworks
+# brew install dpkg #For debian package uninstall
+# sudo install -d -o $(whoami) -g admin /usr/local/Frameworks #Python link fix
+# chmod a+x ./bclock #Fix permissions for MacOS ?
+# brew update && brew upgrade
+# brew uninstall openssl; brew install https://github.com/tebelorg/Tump/releases/download/v1.0.0/openssl.rb
+# brew reinstall openssl
+# brew uninstall libjson-rpc-cpp
+# brew install -s libjson-rpc-cpp
 
 # Kill docker & binaries processes before install
 $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh &
@@ -75,6 +81,7 @@ echo "alias ballnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" 
 echo "alias ballnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
 echo "alias bcc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
 echo "alias bccd='$HOME/DGLD_GuardianCommandConsole/'" >> ~/.bash_aliases
+
 # Force alias update
 source ~/.bash_aliases	
 
@@ -105,6 +112,16 @@ sudo apt install docker-compose -y
 sudo apt install jq -y
 sudo apt install curl -y
 # sudo apt autoremove -y
+
+# Install Homebrew (MacOS specific)
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Install Cask
+brew install caskroom/cask/brew-cask
+# Install docker toolbox
+brew cask install docker-toolbox
+# Install client binaries on macOS
+tar xzvf $HOME/Downloads/docker-19.03.1.tgz
+
 
 # Create folders
 mkdir $HOME/ocean

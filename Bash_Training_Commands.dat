@@ -473,3 +473,17 @@ jq '.[] | .' /map.json
   "height": 3303
 }
 
+
+# Docker
+Start Ocean & Guardnode:
+docker-compose -p ocean -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
+
+Check status:
+docker-compose -p ocean -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml ps
+
+Check ocean logs:
+docker-compose -p ocean -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs --follow ocean
+
+Check guardnode logs:
+docker-compose -p ocean -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs --follow guardnode
+

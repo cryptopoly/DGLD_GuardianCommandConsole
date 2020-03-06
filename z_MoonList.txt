@@ -4,44 +4,35 @@ MacOS Notifications & Status
 -
 
 -RPC calls
-
-Layout
--Window size/positioning
-
+--Catalogue and process
 
 Script Improvements
--Start Node
+-Start CC
+--Handle exceptions where count isn't found "unary operator expected" or similar
+Node
 --Check for oceand running first before attempting to run
--Ocean remains online (does not stop when exiting app)
 -All Scripts
---Check for oceand running first before attempting to run
--Command into .sh & Merge with Python (dynamic)
--Update Launchpad to "ls -lh *.command" etc
--Make as much variable/automated as possible
--Fix up if statements for execution
--Exclude paths
+--
 -Function for changing working directory
 -Function for nano/vim/emacs etc
 -Every function explained in Training Commands so peeps can learn from the app itself
 
 Validation
--Menu number validation
--Menu null entry validation
-
+-Everywhere!
 
 Navigation
--Exit points
--Allow navigate to command line
 -Allow exit Command Launcher and relaunch with refreshed data
 
-
 Indicators
--Nodes up/down etc
+-System/node/remote statuses
 
+Data/Messages/Alerts
+- Daily gold movements
+- Asset counts/weights
+- Assets redeeemed
+- 
 
 -Fixes
---Pressing enter without number
---Pressing number out of range
 --Symbols etc 
 
 
