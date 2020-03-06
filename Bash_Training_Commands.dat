@@ -487,3 +487,10 @@ docker-compose -p ocean -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.ym
 Check guardnode logs:
 docker-compose -p ocean -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs --follow guardnode
 
+
+# Recompile Ocean - Linux/MacOS
+cd $HOME/ocean
+./autogen.sh
+./configure.ac
+make
+make -j4

@@ -114,13 +114,13 @@ sudo apt install curl -y
 # sudo apt autoremove -y
 
 # Install Homebrew (MacOS specific)
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # Install Cask
-brew install caskroom/cask/brew-cask
-# Install docker toolbox
-brew cask install docker-toolbox
-# Install client binaries on macOS
-tar xzvf $HOME/Downloads/docker-19.03.1.tgz
+# brew install caskroom/cask/brew-cask
+# # Install docker toolbox
+# brew cask install docker-toolbox
+# # Install client binaries on macOS
+# tar xzvf $HOME/Downloads/docker-19.03.1.tgz
 
 
 # Create folders
