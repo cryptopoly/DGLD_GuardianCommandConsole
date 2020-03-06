@@ -167,5 +167,4 @@ sudo python3 setup.py install
 
 # Download and kick off Docker stuff (legacy) 
 sudo $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
- 
-$bcc
+sudo $HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld
