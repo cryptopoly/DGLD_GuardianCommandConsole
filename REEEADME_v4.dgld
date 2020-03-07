@@ -105,6 +105,7 @@ export bcc="$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dg
 cd $HOME
 # sudo apt-get update -y
 # sudo apt-get upgrade -y
+
 sudo apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole

@@ -4,7 +4,7 @@
 export dgldnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean"
 
 # Check for DGLD node status and kick off if off
-dgld_main_status=$(ps -efT | grep -w "ocean" | grep -v "ocean-cb" | grep -v guardnode | grep -v grep | awk '{ print "Online" }')
+dgld_main_status=$(ps -ef | grep -w "ocean" | grep -v "ocean-cb" | grep -v guardnode | grep -v grep | awk '{ print "Online" }')
 #echo $dgld_main_status
 
 if [[ $dgld_main_status = "Online" ]]

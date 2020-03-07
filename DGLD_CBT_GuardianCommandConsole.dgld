@@ -42,9 +42,9 @@ date -u
 echo ""
 
 # Check for dgld and cbt node daemons
-dgld_main_status=$(ps -efT | grep -w "ocean" | grep -v "ocean-cb" | grep -v guardnode | grep -v grep | awk '{ print "Online" }')
+dgld_main_status=$(ps -ef | grep -w "ocean" | grep -v "ocean-cb" | grep -v guardnode | grep -v grep | awk '{ print "Online" }')
 # echo "$dgld_main_status"
-cbt_main_status=$(ps -efT | grep -w "ocean-cb" | grep -v grep | awk '{ print "Online" }')
+cbt_main_status=$(ps -ef | grep -w "ocean-cb" | grep -v grep | awk '{ print "Online" }')
 # echo "$cbt_main_status"
 
 # DGLD Sync Status
