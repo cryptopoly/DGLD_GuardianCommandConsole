@@ -165,6 +165,13 @@ sudo pip3 install -r requirements.txt
 sudo python3 setup.py build
 sudo python3 setup.py install
 
-# Download and kick off Docker stuff (legacy) 
-sudo $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
-sudo $HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld
+# Download and kick off Docker images
+# $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
+# $HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld
+
+# Update permissions docker permissions and launch
+sudo usermod -aG docker $USER
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
+

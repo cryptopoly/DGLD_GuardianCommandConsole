@@ -94,7 +94,7 @@ sudo apt install jq -y
 sudo apt install curl -y
 sudo apt autoremove -y
 
-# Update Docker premissions to docker without mod
+# Update Docker premissions to docker without sudo
 sudo usermod -aG docker $USER
 source ~/.bash_aliases
 
