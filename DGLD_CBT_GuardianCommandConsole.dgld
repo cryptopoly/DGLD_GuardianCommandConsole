@@ -26,7 +26,7 @@ NC='\033[0m' # No Colour
 
 # Kill docker processes before running binaries command console
 echo "Reticulating splines..."
-$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh
+./Stop_Nodes.sh
 
 ## Start DGLD, CBT and GuardNode nodes ##
 cd $HOME/DGLD_GuardianCommandConsole
