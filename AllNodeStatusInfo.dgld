@@ -1,26 +1,11 @@
 #!/bin/bash 
 # set -x # debug
 
-echo "DGLD Node Status (docker):"
 dgld_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
-echo $dgld_main_status
-
-echo "CBT Node Status (docker):"
 cbt_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
-echo $cbt_main_status
-
-echo "GuardNode Status (docker):"
 guardnode_status=$(pgrep guardnode | awk '{ print "Online" }')
-echo $guardnode_status
-
-echo "DGLD Node Status (binaries):"
 bdgld_main_status=$(ps -ef | grep -w ocean | grep -v ocean-cb | grep -v guardnode | grep -v chain=gold_main | grep -v grep | awk '{ print "Online" }')
-echo $bdgld_main_status
-
-echo "CBT Node Status (binaries):"
 bcbt_main_status=$(ps -ef | grep -w ocean-cb | grep -v grep | awk '{ print "Online" }')
-echo $bcbt_main_status
-
-echo "GuardNode Status (python):"
 bguardnode_status=$(ps -ef | grep -w run_guardnode | grep -v grep | awk '{ print "Online" }')
-echo $bguardnode_status
+
+bguardnode_status=$(ps -ef | grep -w run_guardnode | grep -v grep | awk '{ print "Online" }')

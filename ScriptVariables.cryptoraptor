@@ -9,3 +9,4 @@ export gnstart="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-com
 export gnstop="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode"
 export logs="docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs"
 export cc="$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh"
+

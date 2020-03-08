@@ -2,7 +2,6 @@
  
 # set -x # debug
 
-echo "DGLD Node Status (docker):"
 dgld_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
 echo $dgld_main_status
 
