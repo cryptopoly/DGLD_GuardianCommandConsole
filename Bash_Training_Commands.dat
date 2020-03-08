@@ -5,6 +5,10 @@ $HOME
 # Example
 $HOME/CryptopoTools = /home/my-pc/CryptopoTools
 
+# If number between
+[[ $dgld_blockheight_node >= 0 && number <= 999999999999)) ]]
+
+
 # Remove lines from file macthing
 grep -v "ocean" ~/.bash_aliases > ~/.bash_aliases
 

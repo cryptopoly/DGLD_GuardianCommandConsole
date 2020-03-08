@@ -11,6 +11,6 @@ then
 	sleep 0
 else
 	echo "Starting CBT node (binaries)..."
-	$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb
+	$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb &
 	sleep 2
 fi

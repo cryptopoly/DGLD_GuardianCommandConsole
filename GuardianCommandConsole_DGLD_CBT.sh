@@ -39,7 +39,7 @@ cbt_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ prin
 echo ""
 echo -n "DGLD Node Status: "
 echo $dgld_main_status
-if test $dgld_main_status = "Online";
+if test $dgld_main_status <> "Online";
 then
 	# DGLD.ch explorer blockheight via API
 	echo -n "DGLD.ch Blockheight: "
@@ -47,9 +47,8 @@ then
 	jq '.blockheight')
 	echo -e $dgld_blockheight_exp
 	echo ""
+
 	# Gold node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
-	if
-		[[ $dgld_blockheight_node == '' ]]; then dgld_blockheight_node=$"0"; fi
 	while dgld_blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
 	(( $dgld_blockheight_node < $dgld_blockheight_exp ));
 	do
@@ -58,14 +57,14 @@ then
 		echo ""
 	done
 		printf "\033[1A"
-		echo -ne "Local Gold Node Blockheight: "; echo $dgld_blockheight_node; echo ""
-	else printf "${RED}Node not running${NC}"; echo ""
-	fi
+		echo -ne "Local DGLD Node Blockheight: "; echo $dgld_blockheight_node; echo ""
+else printf "${RED}Offline${NC}"; echo ""
+fi
 
 # CBT Sync Status
 echo -n "CBT Node Status: "
 echo $cbt_main_status
-if test $cbt_main_status = "Online";
+if test $cbt_main_status <> "Online";
 then
 	# CBT explorer blockheight via API
 	echo -n "CBT Explorer Blockheight: "
@@ -73,9 +72,8 @@ then
 	jq '.blockheight')
 	echo -e $cbt_blockheight_exp
 	echo ""
+
 	# CBT node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
-	if
-		[[ $cbt_blockheight_node == '' ]]; then cbt_blockheight_node=$"0"; fi
 	while cbt_blockheight_node=$(docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
 	(( $cbt_blockheight_node < $cbt_blockheight_exp ));
 	do
@@ -85,8 +83,8 @@ then
 	done
 		printf "\033[1A"
 		echo -ne "Local CBT Node Blockheight: "; echo $cbt_blockheight_node;
-	else printf "${RED}Node not running${NC}"; echo ""
-	fi
+else printf "${RED}Offline${NC}"; echo ""
+fi
 
 
 

@@ -20,9 +20,9 @@ else
 	echo "DGLD, CBT and GuardNode Ocean docker services starting..."
 	# gnome-terminal -- docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up
 	# nohup docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up &
-	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
-	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
-	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean &
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb &
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode &
 	# nohup docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up $HOME/DGLD_GuardianCommandConsole/GuardNodeLogs.txt &
 	sleep 4
 fi
