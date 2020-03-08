@@ -2,17 +2,23 @@
  
 # set -x # debug
 
-# Check for dgld and cbt node daemons
-gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
-echo $gold_main_status
-ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
-echo $ocean_main_status
+echo "DGLD Node Status (docker):"
+dgld_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
+echo $dgld_main_status
+
+echo "CBT Node Status (docker):"
+cbt_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
+echo $cbt_main_status
+
+echo "GuardNode Status (docker):"
+pgrep guardnode | awk '{ print "Online" }'s
+echo $guardnode_status
 
 
 # MacOS Only
 # open /Applications/Docker.app &
 
-if [[ $gold_main_status = "Online" ]] && [[ $ocean_main_status = "Online" ]]
+if [[ $dgld_main_status = "Online" ]] && [[ $cbt_main_status = "Online" ]]
 then
 	# echo "DGLD and CBT Ocean nodes online (docker)"
 	sleep 0
