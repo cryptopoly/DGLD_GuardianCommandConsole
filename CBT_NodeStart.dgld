@@ -1,8 +1,6 @@
 #!/bin/bash 
 # set -x # debug
 
-export cbtnodestart="$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb"
-
 # Check for CBT node status and kick off if off
 cbt_main_status=$(ps -ef | grep -w "ocean-cb" | grep -v grep | awk '{ print "Online" }')
 # echo $cbt_main_status
@@ -13,6 +11,6 @@ then
 	sleep 0
 else
 	echo "Starting CBT node (binaries)..."
-	$cbtnodestart &
+	$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb
 	sleep 2
 fi

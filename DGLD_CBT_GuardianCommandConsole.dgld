@@ -1,36 +1,24 @@
 #!/bin/bash 
 # set -x # debug
 
-# script Log.txt
-# Force alias update
-
-source ~/.bash_aliases
-
-## Declare environment variables ##
-export b_dgldnodestart="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld"
-export b_dgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
-export b_dgldnodestop="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld"
-export b_cbtnodestart="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld"
-export b_cbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
-export b_cbtnodestop="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld"
-export b_gnstart="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld"
-export b_gnstop="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld"
-export b_allnodestart="$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld"
-export b_allnodestop="$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld"
-export b_cc="$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld"
-
 # Text colouring
 RED='\033[0;31m'
 AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
 
+# Force alias update
+source ~/.bash_aliases
+
 # Kill docker processes before running binaries command console
-echo "Reticulating splines..."
-./Stop_Nodes.sh
+# ./Stop_Nodes.sh
 
 ## Start DGLD, CBT and GuardNode nodes ##
+
+# ./Start_Nodes.dgld
+
 cd $HOME/DGLD_GuardianCommandConsole
-./Start_Nodes.dgld
+echo "Reticulating splines..."
+echo
 
 # Loop CC
 while true; do

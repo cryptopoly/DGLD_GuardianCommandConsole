@@ -12,7 +12,7 @@ then
 	sleep 0
 else
 	echo "Starting GuardNode (binaries)..."
-	$gnstart &
+	$gnstart
 	# gnome-terminal -- $gnstart
 	# gnome-terminal -- $HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld
 	sleep 2

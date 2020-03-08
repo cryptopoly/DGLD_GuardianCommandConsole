@@ -1,8 +1,7 @@
 #!/bin/bash 
 # set -x # debug
 
-# script Log.txt
-
+# Text colouring
 RED='\033[0;31m'
 AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
@@ -10,19 +9,19 @@ NC='\033[0m' # No Colour
 # Force alias update
 source ~/.bash_aliases
 
-# Force alias update
-source ~/.bash_aliases
-
-# Kill binaries processes before running docker command console
+# Reticulating splines
+cd $HOME/DGLD_GuardianCommandConsole
 echo "Reticulating splines..."
 echo ""
-$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld
+
+# Kill binaries processes before running docker command console
+# $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld
 
 ## Start Docker DGLD, CBT and GuardNode - Docker Editions ##
-cd $HOME/DGLD_GuardianCommandConsole
-./Start_Nodes.sh
+# ./Start_Nodes.sh
 
 while true; do
+cd $HOME/DGLD_GuardianCommandConsole
 clear
 echo "Welcome to the DGLD-CBT GuardNode Command Console - Docker Edition"
 # Current date
@@ -31,35 +30,35 @@ date -u
 echo ""
 
 # Check for dgld and cbt node daemons
-gold_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
-# echo "$gold_main_status"
-ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
-# echo "$ocean_main_status"
+dgld_main_status=$(ps -ef | grep -w chain=gold_main | grep -v grep | awk '{ print "Online" }')
+# echo "$dgld_main_status"
+cbt_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ print "Online" }')
+# echo "$cbt_main_status"
 
 # DGLD Sync Status
 echo ""
 echo -n "DGLD Node Status: "
-echo $gold_main_status
-if test $gold_main_status = "Online";
+echo $dgld_main_status
+if test $dgld_main_status = "Online";
 then
 	# DGLD.ch explorer blockheight via API
 	echo -n "DGLD.ch Blockheight: "
-	gold_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info |\
+	dgld_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info |\
 	jq '.blockheight')
-	echo -e $gold_blockheight_exp
+	echo -e $dgld_blockheight_exp
 	echo ""
 	# Gold node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
 	if
-		[[ $gold_blockheight_node == '' ]]; then gold_blockheight_node=$"0"; fi
-	while gold_blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
-	(( $gold_blockheight_node < $gold_blockheight_exp ));
+		[[ $dgld_blockheight_node == '' ]]; then dgld_blockheight_node=$"0"; fi
+	while dgld_blockheight_node=$(docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass getblockcount)
+	(( $dgld_blockheight_node < $dgld_blockheight_exp ));
 	do
 		printf "\033[1A"
-		printf "\033[5m${AMBER}Node synchronising...$gold_blockheight_node${NC}\033[0m"
+		printf "\033[5m${AMBER}Node synchronising...$dgld_blockheight_node${NC}\033[0m"
 		echo ""
 	done
 		printf "\033[1A"
-		echo -ne "Local Gold Node Blockheight: "; echo $gold_blockheight_node; echo ""
+		echo -ne "Local Gold Node Blockheight: "; echo $dgld_blockheight_node; echo ""
 	else printf "${RED}Node not running${NC}"; echo ""
 	fi
 
