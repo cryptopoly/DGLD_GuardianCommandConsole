@@ -17,3 +17,9 @@ sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/
 See README_v2_Binaries.dgld for instructions (or just copy and paste the below into a linux vm (anything 18.04 and up))
 
 sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README_v2_Binaries.dgld | bash
+
+
+# Combined (v4)
+See REEEADME_v4.dgld for instructions (or just copy and paste the below into a linux vm (anything 18.04 and up))
+
+sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.dgld | bash'
