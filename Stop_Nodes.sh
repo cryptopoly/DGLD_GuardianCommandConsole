@@ -1,5 +1,5 @@
 #!/bin/bash 
- # set -x # debug
+# set -x # debug
 
 # echo "Stopping Docker Nodes"
 

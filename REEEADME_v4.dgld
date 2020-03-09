@@ -174,9 +174,9 @@ sudo python3 setup.py install
 # Update permissions docker permissions and launch
 sudo usermod -aG docker $USER
 
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
-sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
+docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
 
 shutdown -r 0
 
