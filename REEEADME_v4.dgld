@@ -30,9 +30,6 @@
 # Log stuff for troubleshooting
 set -x
 
-# Shallow brew fix
-# git -C "$(brew --repo homebrew/core)" fetch --unshallow
-
 # MacOS requirements
 # brew update && brew upgrade
 # brew uninstall --ignore-dependencies openssl; brew install https://github.com/tebelorg/Tump/releases/download/v1.0.0/openssl.rb
@@ -45,6 +42,8 @@ set -x
 # brew reinstall openssl
 # brew uninstall libjson-rpc-cpp
 # brew install -s libjson-rpc-cpp
+# Shallow brew fix
+# git -C "$(brew --repo homebrew/core)" fetch --unshallow
 
 # Kill docker & binaries processes before install
 $HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh &
@@ -103,27 +102,25 @@ export bcc="$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dg
 
 # Install required libraries
 cd $HOME
-# sudo apt-get update -y
-# sudo apt-get upgrade -y
-
-sudo apt install git -y
+apt-get update -y
+apt-get upgrade -y
+apt dist-upgrade -y
+apt install git -y
 git clone https://github.com/goldtokensa/config dgld
 git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
-sudo apt install docker -y
-sudo apt install docker-compose -y
-sudo apt install jq -y
-sudo apt install curl -y
+apt install docker -y
+apt install docker-compose -y
+apt install jq -y
+apt install curl -y
 # sudo apt autoremove -y
 
-# Install Homebrew (MacOS specific)
-# ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+# Install Cask (MacOS specific)
 # Install Cask
 # brew install caskroom/cask/brew-cask
 # # Install docker toolbox
 # brew cask install docker-toolbox
 # # Install client binaries on macOS
 # tar xzvf $HOME/Downloads/docker-19.03.1.tgz
-
 
 # Create folders
 mkdir $HOME/ocean
@@ -162,17 +159,17 @@ rm -r $HOME/ocean/binaries/$LATEST_RELEASE/DEBIAN
 cd $HOME
 git clone https://github.com/commerceblock/guardnode
 cd guardnode
-sudo apt install python3-pip -y
-sudo pip3 install -r requirements.txt
-sudo python3 setup.py build
-sudo python3 setup.py install
+apt install python3-pip -y
+pip3 install -r requirements.txt
+python3 setup.py build
+python3 setup.py install
 
 # Download and kick off Docker images
 # $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
 # $HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld
 
 # Update permissions docker permissions and launch
-sudo usermod -aG docker $USER
+usermod -aG docker $USER
 
 docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
 docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
