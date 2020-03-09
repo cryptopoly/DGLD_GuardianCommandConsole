@@ -14,7 +14,7 @@
 
 # Noobs
 # Step 1 - Open terminal
-# Step 2 - Enter 'apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.dgld | bash'
+# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.dgld | bash'
 # Step 3 - Enter password
 # Step 4 - Enter 'y'
 # Step 5 - Restart the VPS once all installed to ensure settings are fully applied
@@ -176,6 +176,5 @@ docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d o
 docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
 
 echo "System restarting to apply changes"
-
-shutdown -r 10
-
+sleep 4
+shutdown -r 0
