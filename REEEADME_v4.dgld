@@ -14,16 +14,17 @@
 
 # Noobs
 # Step 1 - Open terminal
-# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.sh | bash'
+# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.dgld | bash'
 # Step 3 - Enter password
 # Step 4 - Enter 'y'
 # Step 5 - Restart the VPS once all installed to ensure settings are fully applied
 
 # TERMINAL SHORTCUTS/COMMANDS:
-# 'bcc' shortcut to open the command console
+# 'cc' shortcut to open the command console
 # '00' to exit the command console
-# 'bdgld' and 'bcbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
-# 'ballnodestart' or 'ballnodestop' to launch/kill all nodes
+# 'dgld' and 'cbt' are shortcuts for RPC call - e.g. getblockchaininfo, getbalance
+# 'allnodestart' or 'allnodestop' to launch/kill all nodes
+# 'b' prefix to all shortcuts to run the binaries version
 
 ######### INSTALL_SCRIPT ########
 
