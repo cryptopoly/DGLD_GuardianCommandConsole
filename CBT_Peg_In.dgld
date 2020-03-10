@@ -44,8 +44,6 @@ read -n 1 -s -r -p "Press any key to confirm CBT tokens have been sent to the et
 echo ""
 echo ""
 
-
-
 echo "Step 4"
 echo "Claim the CBT Mainnet tokens with eth_claim_pubkey returned above, the transaction id and the CBT amount (claimethpegin):"
 echo "e.g. 'ocean-cli claimethpegin [tx_id] [cbt_amount] [eth_claim_pubkey]'"
