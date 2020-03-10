@@ -17,7 +17,7 @@ echo ""
 while true; do
 
 # Menu ID Entry
-echo "Choose an option between 1 and"$menucount" and press enter (Press return to refresh command list, 00 to main menu):"
+echo "Choose an option between 1 &"$menucount" and press enter (Press return to refresh command list, 00 to main menu):"
 read menuid
 echo ""
 echo ""

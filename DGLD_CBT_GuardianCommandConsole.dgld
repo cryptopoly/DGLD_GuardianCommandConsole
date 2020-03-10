@@ -12,7 +12,7 @@ source ~/.bash_aliases
 clear
 echo "Reticulating splines..."
 cd $HOME/DGLD_GuardianCommandConsole
-sleep 2
+sleep 0
 echo
 
 # Loop CC
@@ -29,6 +29,8 @@ dgld_main_status=$(ps -ef | grep -w "ocean" | grep -v "ocean-cb" | grep -v guard
 # echo "$dgld_main_status"
 cbt_main_status=$(ps -ef | grep -w "ocean-cb" | grep -v grep | awk '{ print "Online" }')
 # echo "$cbt_main_status"
+guardnode_status=$(ps -ef | grep -w run_guardnode | grep -v grep | awk '{ print "Online" }')
+# echo $guardnode_status
 
 # DGLD Sync Status
 echo ""
@@ -81,6 +83,11 @@ then
 	else printf "${RED}Offline${NC}"; echo ""
 	fi
 
+# GuardNode Status
+echo ""
+echo -n "GuardNode Status: "
+if [ "$guardnode_status" == "" ]; then printf "${RED}Offline${NC}"; else printf "$guardnode_status"; fi
+echo ""
 
 # Show Menu
 echo ""
@@ -91,13 +98,13 @@ echo ""
 
 
 # Menu ID Entry
-echo "Choose an option between 1 and"$menucount" and press enter (99 to refresh menu, 00 to exit):"
+echo "Choose an option between 1 & "$menucount" and press enter (00 to exit):"
 read menuid
 echo ""
 echo ""
 
 # Exit clause
-if [[ -z $menuid ]] ; then exec
+if [[ -z $menuid ]] ; then exec ;
 elif [[ $menuid == "00" ]] ; then exit ;
 elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then exec
 else
