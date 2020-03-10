@@ -9,15 +9,10 @@ NC='\033[0m' # No Colour
 # Force alias update
 source ~/.bash_aliases
 
-# Kill docker processes before running binaries command console
-# ./Stop_Nodes.sh
-
-## Start DGLD, CBT and GuardNode nodes ##
-
-# ./Start_Nodes.dgld
-
-cd $HOME/DGLD_GuardianCommandConsole
+clear
 echo "Reticulating splines..."
+cd $HOME/DGLD_GuardianCommandConsole
+sleep 2
 echo
 
 # Loop CC
@@ -94,7 +89,6 @@ menucount=$(echo "$menu"|wc -l)
 echo "$menu"
 echo ""
 
-while true; do
 
 # Menu ID Entry
 echo "Choose an option between 1 and"$menucount" and press enter (99 to refresh menu, 00 to exit):"
@@ -103,7 +97,7 @@ echo ""
 echo ""
 
 # Exit clause
-if [[ -z $menuid ]] ; then ./DGLD_CBT_GuardianCommandConsole.dgld
+if [[ -z $menuid ]] ; then exec
 elif [[ $menuid == "00" ]] ; then exit ;
 elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then exec
 else
@@ -112,16 +106,12 @@ else
 exec=$(echo "$menu" | grep -w "$menuid" | awk '{ print $2 }')
 ./"$exec"
 echo ""
-
-
-# # Confirm exit (updated loop and no longer required)
-# read -n 1 -s -r -p "Press any key to continue"
-# echo ""
-# echo ""
-
 fi
 
+# Confirm exit (updated loop and no longer required)
+read -n 1 -s -r -p "Press any key to continue"
+echo ""
+echo ""
+
 done
 
-
-done
