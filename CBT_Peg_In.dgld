@@ -51,7 +51,7 @@ echo ""
 echo "Enter the tx_id (without '0x'):"
 read txid
 echo ""
-echo "Enter the CBT amount to Peg-In:"
+echo "Enter the CBT amount to Peg-In (no commas, 8 decimal places, no rounding):"
 read cbtamount
 echo ""
 echo "Mainnet Tx broadcasted with Id:"
