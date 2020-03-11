@@ -11,7 +11,7 @@ ocean_main_status=$(ps -ef | grep -w chain=ocean_main | grep -v grep | awk '{ pr
 
 if [[ $gold_main_status = "Online" ]] && [[ $ocean_main_status = "Online" ]];
 then
-	sudo docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean
+	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean
 	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean-cb
 	docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode
 	sleep 2

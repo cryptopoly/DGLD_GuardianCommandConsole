@@ -14,7 +14,7 @@
 
 # Noobs
 # Step 1 - Open terminal
-# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.dgld | bash'
+# Step 2 - Enter 'sudo apt install curl -y; curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/REEEADME_v4.sh | bash'
 # Step 3 - Enter password
 # Step 4 - Enter 'y'
 # Step 5 - Restart the VPS once all installed to ensure settings are fully applied
@@ -29,7 +29,7 @@
 ######### INSTALL_SCRIPT ########
 
 # Log stuff for troubleshooting
-set -x
+# set -x
 
 # MacOS requirements
 # brew update && brew upgrade
@@ -165,16 +165,12 @@ pip3 install -r requirements.txt
 python3 setup.py build
 python3 setup.py install
 
-# Download and kick off Docker images
-# $HOME/DGLD_GuardianCommandConsole/Start_Nodes.sh
-# $HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld
-
 # Update permissions docker permissions and launch
-usermod -aG docker $USER
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
-docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
-sleep 4
+# usermod -aG docker $USER
+# docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean
+# docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
+# docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
+# sleep 4
 
 echo "System restarting to apply changes"
 sleep 4
