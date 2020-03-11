@@ -8,6 +8,8 @@ $HOME/CryptopoTools = /home/my-pc/CryptopoTools
 # If number between
 [[ $dgld_blockheight_node >= 0 && number <= 999999999999)) ]]
 
+# Map.json
+https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json
 
 # Remove lines from file macthing
 grep -v "ocean" ~/.bash_aliases > ~/.bash_aliases
@@ -393,6 +395,28 @@ echo All done
 # RawGitHubInstall
 curl -Ls https://raw.githubusercontent.com/cryptopoly/DGLD_GuardianCommandConsole/master/README.sh | bash
 
+# Doesn't contain
+# | contains(\"latest\") | not)
+
+
+# json jq select assets where asset is CBT mainnet
+chainassets=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getutxoassetinfo)
+echo $chainassets | jq '.[] | select(.asset=="cc26f23e5ebe23d66f52c762acd8c99dda07e7dcda9aa68907b707ee3e855307")' 
+# Result:
+# {
+#   "asset": "cc26f23e5ebe23d66f52c762acd8c99dda07e7dcda9aa68907b707ee3e855307",
+#   "spendabletxouts": 179,
+#   "amountspendable": 767801.78820348,
+#   "frozentxouts": 0,
+#   "amountfrozen": 0
+# }
+
+# json jq select assets where asset is CBT mainnet & show amount spendable
+chainassets=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getutxoassetinfo)
+echo $chainassets | jq '.[] | select(.asset=="cc26f23e5ebe23d66f52c762acd8c99dda07e7dcda9aa68907b707ee3e855307")' | jq -r '.amountspendable'
+# Result:
+# 767801.78820348
+
 
 
 # cURL - retrieve information from json api + credentials via -H cookie (with cloudflare cookie - open browser, F12, network tab, open site, log in to site, right click site url, copy curl copy as cURL, retrieve cookie)
@@ -498,3 +522,38 @@ cd $HOME/ocean
 ./configure.ac
 make
 make -j4
+
+# CBT getutxoassetinfo - CBT mainnet and policy assets
+getutxoassetinfo
+[
+  {
+    "asset": "49a265d3e64c956f1b748f2aa07f15e4030b1deb59dcfd985f10c09c63f4bf01",
+    "spendabletxouts": 101,
+    "amountspendable": 21000000.00000000,
+    "frozentxouts": 0,
+    "amountfrozen": 0.00000000
+  }, 
+  {
+    "asset": "cc26f23e5ebe23d66f52c762acd8c99dda07e7dcda9aa68907b707ee3e855307",
+    "spendabletxouts": 179,
+    "amountspendable": 767801.78820348,
+    "frozentxouts": 0,
+    "amountfrozen": 0.00000000
+  }, 
+  {
+    "asset": "c6df805dffa2d881d40380ab06267af109dc35726b6784ea529a08e58c2f33f4",
+    "spendabletxouts": 100,
+    "amountspendable": 21000000.00000000,
+    "frozentxouts": 0,
+    "amountfrozen": 0.00000000
+  }
+]
+
+
+
+# DGLD getutxoassetinfo - DGLD mainnet and policy assets
+
+
+
+
+

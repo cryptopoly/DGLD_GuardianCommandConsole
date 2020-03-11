@@ -1,8 +1,8 @@
 #!/bin/bash 
- # set -x # debug
+# set -x # debug
 
-echo 'DGLD Gold Total'
-$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getbalance
-Balance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getbalance)
-# osascript -e 'display notification "Balance Retrieved" with title "GoldNode"'
+# Sum of all bar asset tokens
+echo -n "Total DGLD [need to fix decimal precision]: "
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getutxoassetinfo | jq '.[] | select(.amountspendable < 10000.00000000)' | jq '.amountspendable' | awk '{s+=$1}END{print s}'
 echo ""
+

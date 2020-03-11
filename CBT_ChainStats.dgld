@@ -1,0 +1,8 @@
+#!/bin/bash 
+# set -x # debug
+
+# json jq select assets where asset is CBT mainnet & show amount spendable
+chainassets=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getutxoassetinfo)
+echo -n "Total Mainnet Pegged CBT: "
+echo $chainassets | jq '.[] | select(.asset=="cc26f23e5ebe23d66f52c762acd8c99dda07e7dcda9aa68907b707ee3e855307")' | jq -r '.amountspendable'
+echo ""

@@ -31,11 +31,9 @@ cbt_main_status=$(ps -ef | grep -w "ocean-cb" | grep -v grep | awk '{ print "Onl
 # echo "$cbt_main_status"
 guardnode_status=$(ps -ef | grep -w run_guardnode | grep -v grep | awk '{ print "Online" }')
 # echo $guardnode_status
-cbt_blockheight_exp=$(curl -s https://cbtexplorer.com/api/info |\
-	jq '.blockheight')
+cbt_blockheight_exp=$(curl -s https://cbtexplorer.com/api/info | jq '.blockheight')
 # echo $cbt_blockheight_exp
-dgld_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info |\
-	jq '.blockheight')
+dgld_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info | jq '.blockheight')
 # echo $dgld_blockheight_exp
 
 
