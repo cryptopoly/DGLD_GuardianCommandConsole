@@ -10,7 +10,7 @@ then
 	sleep 0
 else
 	echo "Starting GuardNode (binaries)..."
-	nohup $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 100000 $HOME/DGLD_GuardianCommandConsole/GuardNodeLogs.txt &
+	nohup $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 100000 &
 	# gnome-terminal -- $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1 &
 	sleep 2
 fi
