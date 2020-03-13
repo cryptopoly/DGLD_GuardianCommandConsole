@@ -47,62 +47,19 @@
 # git -C "$(brew --repo homebrew/core)" fetch --unshallow
 
 # Kill docker & binaries processes before install
-$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.sh &
-$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld &
+cd $HOME/DGLD_GuardianCommandConsole/
+killall oceand
+killall guardnode
+killall docker
 
-# Clear aliases
-grep -v "" ~/.bash_aliases > ~/.bash_aliases
-
-# Remove existing $HOME/DGLD_GuardianCommandConsole folder
-# rm -r -f $HOME/DGLD_GuardianCommandConsole
-
-## Save useful alias shortcuts for node functions ##
-# Docker aliases
-echo "alias dgld='docker exec guardnode_ocean_1 ocean-cli -rpcport=8443 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
-echo "alias cbt='docker exec guardnode_ocean-cb_1 ocean-cli -rpcport=8332 -rpcuser=ocean -rpcpassword=oceanpass '" >> ~/.bash_aliases
-echo "alias nodestart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean ocean-cb'" >> ~/.bash_aliases
-echo "alias nodestop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop ocean ocean-cb'" >> ~/.bash_aliases
-echo "alias gnstart='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode'" >> ~/.bash_aliases
-echo "alias gnstop='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml stop guardnode'" >> ~/.bash_aliases
-echo "alias logs='docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml logs'" >> ~/.bash_aliases
-echo "alias cc='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT.sh'" >> ~/.bash_aliases
-
-
-# Binaries aliases
-echo "alias bdgldnodestart='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld'" >> ~/.bash_aliases
-echo "alias bdgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
-echo "alias bdgldnodestop='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias bcbtnodestart='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld'" >> ~/.bash_aliases
-echo "alias bcbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
-echo "alias bcbtnodestop='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias bgnstart='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld'" >> ~/.bash_aliases
-echo "alias bgnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias ballnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
-echo "alias ballnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
-echo "alias bcc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld'" >> ~/.bash_aliases
-echo "alias bccf='$HOME/DGLD_GuardianCommandConsole/'" >> ~/.bash_aliases
-echo "alias bcc2='$HOME/DGLD_GuardianCommandConsole/GuardianCommandConsole_DGLD_CBT_v2.sh'" >> ~/.bash_aliases
+# Latest Aliases
+./AliasUpdate.sh &
 
 # Force alias update
-source ~/.bash_aliases	
-
-
-## Declare environment variables ##
-export bdgldnodestart="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld"
-export bdgld="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean "
-export bdgldnodestop="$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld"
-export bcbtnodestart="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld"
-export bcbt="$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb "
-export bcbtnodestop="$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld"
-export bgnstart="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld"
-export bgnstop="$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld"
-export ballnodestart="$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld"
-export ballnodestop="$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld"
-export bcc="$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.dgld"
-
+source ~/.bash_aliases
 
 # Install required libraries
-cd $HOME
+cd $HOME/DGLD_GuardianCommandConsole/
 sudo apt-get update -y
 apt-get upgrade -y
 apt dist-upgrade -y
@@ -171,6 +128,12 @@ python3 setup.py install
 # docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d ocean-cb
 # docker-compose -f $HOME/dgld/mainnet/docker/guardnode/docker-compose.yml up -d guardnode
 # sleep 4
+
+# Install cb tools (inc token report)
+# sudo pip3 install python-bitcoinlib
+# sudo pip3 install python-bitcoinlib
+
+
 
 echo "System restarting to apply changes"
 sleep 4

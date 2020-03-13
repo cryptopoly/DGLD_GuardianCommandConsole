@@ -1,0 +1,26 @@
+#!/bin/bash 
+# set -x # debug
+
+utxoassetinfo=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getutxoassetinfo)
+# echo $utxoassetinfo
+dgld_total=$(echo $utxoassetinfo | jq '.[] | select(.amountspendable < 10000.00000000)' | jq '.amountspendable' | awk -v OFMT=%.17g -F ',' '{SUM+=$1};END{print SUM}')
+# echo $dgld_total
+jasonsmap=$(curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json)
+# echo $jasonsmap
+gold_mass=$(echo $jasonsmap | jq '.assets[]' | jq '.mass' | awk -v OFMT=%.17g -F ',' '{SUM+=$1};END{print SUM}')
+# echo $gold_mass
+nuggetratio=$(awk -v OFMT=%.9g "BEGIN {print ($gold_mass)/($dgld_total)}")
+# echo $nuggetratio
+
+# # Signed mapping total from dgld
+echo "Total Gold Mass: $gold_mass ounces"
+echo ""
+
+# # Sum of all bar asset tokens
+echo "Total DGLD Tokens: $dgld_total"
+echo ""
+
+# 1 DGLD = 0.09951381 Troy oz = $165.12 USD
+echo "1 DGLD = $nuggetratio Troy ounce of gold"
+echo ""
+

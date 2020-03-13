@@ -1,24 +1,10 @@
 #!/bin/bash 
 # set -x # debug
 
-# Sum of all bar asset tokens
-# echo "Total DGLD [need to fix decimal precision]: "
-# $HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getutxoassetinfo | jq '.[] | select(.amountspendable < 10000.00000000)' | jq '.amountspendable' | awk '{s+=$1}END{print s}'
-# echo ""
-
-# echo "Raw map from dgld:"
+# Raw map from dgld
 dgldmap=$(curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json)
 # echo $dgldmap | jq '.'
 # echo ""
 
-echo $dgldmap
-
-
-echo "Test dgld:"
-echo $dgldmap | jq '.height'
-echo ""
-
-echo "More"
-echo $dgldmap | jq '.[] | .'
-
-# jq '.duration | add'
+echo "Signed DGLD.ch map"
+echo $dgldmap | jq '.'

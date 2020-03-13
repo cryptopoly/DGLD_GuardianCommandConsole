@@ -23,7 +23,7 @@ echo ""
 echo ""
 
 # Exit clause
-if [[ -z $menuid ]] ; then ./CBT_OceanClient_Menu.dgld
+if [[ -z $menuid ]] ; then exec
 elif [[ $menuid == "00" ]] ; then exit ;
 elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then exec
 else

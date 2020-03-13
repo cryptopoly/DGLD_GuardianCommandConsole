@@ -6,7 +6,11 @@ $HOME
 $HOME/CryptopoTools = /home/my-pc/CryptopoTools
 
 # If number between
-[[ $dgld_blockheight_node >= 0 && number <= 999999999999)) ]]
+[[ $dgld_blockheight_node >=  0 && number <= 999999999999)) ]]
+
+# Best page ever on bash/linux calculations
+https://unix.stackexchange.com/questions/40786/how-to-do-integer-float-calculations-in-bash-or-other-languages-frameworks
+
 
 # Map.json
 https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json
@@ -357,6 +361,15 @@ blockheight=$($HOME/ocean/src/ocean-cli -datadir=$HOME/goldnode_main/ getblockco
 echo -n "Blockheight: "; echo $blockheight;
 echo -n "Calculated Genesis Block Timestamp: "; date -u -r 1568700000 -v +"$blockheight"M
 
+# Sum of all bar asset tokens
+echo -n "Total DGLD [need to fix decimal precision]: "
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getutxoassetinfo | jq '.[] | select(.amountspendable < 10000.00000000)' | jq '.amountspendable' | awk '{s+=$1}END{print s}'
+echo ""
+
+# Sum of all bar asset tokens - including decimal places
+echo -n "Total DGLD [need to fix decimal precision]: "
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getutxoassetinfo | jq '.[] | select(.amountspendable < 10000.00000000)' | jq '.amountspendable' | awk -v OFMT=%.16g -F ',' '{SUM+=$1};END{print SUM}'
+
 
 # Download latest deb release from github
 set -x
@@ -430,16 +443,12 @@ curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json
 curl -s "https://api.etherscan.io/api?module=account&action=tokentx&contractaddress=0x076C97e1c869072eE22f8c91978C99B4bcB02591&address=0x9178afdf2fc2cbdde30290c0b49f040ff804e06c&page=1&offset=5&sort=desc&apikey=MRX1RQP9V1ZHXU5R9N14P4Q71NMCH4D7PF" |\
   jq '.'
 
-
 # Output json from URL Edited
 curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json |\
 	jq '.'
 
-
 # Return lines from file
 cat ./map.json | grep assets
-
-
 
 # Output full json
 jq '.' ./map.json
@@ -449,23 +458,17 @@ jq '.' ./map.json
 jq '.n' /map.json
 #2
 
-
 # Output 1st Level Values
 jq '.n,.m,.height' /map.json
 #2
 #3
 #3303
 
-
 # Output just data under assets
 jq '.assets' /map.json
 
-
 # Output just data under assets excluding bar number
 jq '.[] | .' /map.json
-
-
-
 
 # Example json
 {

@@ -1,0 +1,43 @@
+#!/bin/bash 
+
+# set -x # debug
+
+echo 'DGLD Ocean Client RPC Command List'
+echo ""	
+
+# Show Menu
+echo ""
+menu=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean help | awk '{ print ++lvalue, $0 }')
+menucount=$(echo "$menu"|wc -l)
+echo "$menu"
+echo ""
+echo ""
+
+# Loop
+while true; do
+
+# Menu ID Entry
+echo "Choose an option between 1 &"$menucount" and press enter (Press return to refresh command list, 00 to main menu):"
+read menuid
+echo ""
+echo ""
+
+# Exit clause
+if [[ -z $menuid ]] ; then exec
+elif [[ $menuid == "00" ]] ; then exit ;
+elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then exec
+else
+
+
+# Execute RPC command
+exec=$(echo "$menu" | grep -w "$menuid" | awk '{ print $2 }')
+echo "CBT Ocean Client RPC "$exec":"
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean $exec
+echo ""
+echo ""
+fi
+
+exit
+clear
+done
+
