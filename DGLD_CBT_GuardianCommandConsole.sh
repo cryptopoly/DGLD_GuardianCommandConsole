@@ -39,7 +39,7 @@ dgld_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info | jq '.blockhei
 
 # CBT Sync Status
 echo -n "CBT Node Status: "
-echo $cbt_main_status
+echo "$cbt_main_status"
 if test $cbt_main_status <> "Online";
 then
 	# CBT explorer blockheight via API
@@ -62,7 +62,7 @@ then
 
 # DGLD Sync Status
 echo -n "DGLD Node Status: "
-echo $dgld_main_status
+echo "$dgld_main_status"
 if test $dgld_main_status <> "Online";
 then
 	# DGLD.ch explorer blockheight via API
@@ -86,8 +86,8 @@ then
 	fi
 
 # GuardNode Status
-echo "GuardNode Status: "
-if [ "$guardnode_status" == "" ]; then printf "${RED}Offline${NC}"; else printf "$guardnode_status";fi
+echo -n "GuardNode Status: "
+if [ $guardnode_status == "" ]; then printf "${RED}Offline${NC}"; else echo "$guardnode_status";fi
 echo ""
 
 # Show Menu
@@ -98,7 +98,7 @@ echo "$menu"
 echo ""
 
 # Menu ID Entry
-echo "Choose an option between 1 & "$menucount" and press enter (00 to exit):"
+echo "Choose an option between 1 &"$menucount" and press enter (00 to exit):"
 read menuid
 echo ""
 

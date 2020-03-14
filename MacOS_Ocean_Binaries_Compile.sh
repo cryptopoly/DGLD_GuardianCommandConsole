@@ -7,3 +7,4 @@ make clean
 make
 make -j4
 cp $HOME/ocean/src/ocean* $HOME/ocean
+

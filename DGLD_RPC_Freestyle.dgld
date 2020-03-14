@@ -7,7 +7,6 @@ while true; do
 	read freestyle
 	if [[ -z $freestyle ]] ; then exec
 	elif [[ $freestyle == "00" ]] ; then exit ; echo "Exiting DGLD-CBT Guardian Command Launcher"; echo ""; exit
-	elif ! (($freestyle >= 0 && $freestyle <= $freestyle)) ; then exec
 else
 	$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean $freestyle
 	echo ""
