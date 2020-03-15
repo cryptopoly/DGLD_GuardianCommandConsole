@@ -87,7 +87,7 @@ then
 
 # GuardNode Status
 echo -n "GuardNode Status: "
-if [ $guardnode_status == "" ]; then printf "${RED}Offline${NC}"; else echo "$guardnode_status";fi
+if [ "$guardnode_status" == "" ]; then printf "${RED}Offline${NC}"; else printf "$guardnode_status";fi
 echo ""
 
 # Show Menu

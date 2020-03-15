@@ -1,9 +1,15 @@
 #!/bin/bash 
  
 # set -x # debug
+cbt_totalbalance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance "*" 0 true | jq '.[]')
+cbt_availablebalance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance | jq '.[]')
+cbt_lockedbalance=$(awk -v OFMT=%.14g "BEGIN {print ($cbt_totalbalance)-($cbt_availablebalance)}")
 
-echo 'CBT Balance:'
-$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance
-Balance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance)
-# osascript -e 'display notification "Balance Retrieved" with title "GoldNode"'
+echo "Total CBT: $cbt_totalbalance"
+echo ""
+
+echo "Available CBT: $cbt_availablebalance"
+echo ""
+
+echo "Locked CBT: $cbt_lockedbalance"
 echo ""
