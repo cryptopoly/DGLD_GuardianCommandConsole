@@ -1,0 +1,16 @@
+#!/bin/bash 
+# set -x # debug
+
+auction_requests=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[]")
+genesis_block=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[].genesisBlock")
+request_tx=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[].txid")
+current_auction=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequestbids $request_tx)
+
+# Inflation
+echo "Current Auction Info:"
+echo "$current_auction"
+echo ""
+
+# curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json | jq '.assets'
+
+# jq '.[].aux[].def' file.json

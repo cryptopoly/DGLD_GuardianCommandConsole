@@ -12,7 +12,7 @@ source ~/.bash_aliases
 clear
 echo "Reticulating splines..."
 cd $HOME/DGLD_GuardianCommandConsole
-sleep 0
+sleep 2
 echo
 
 # Loop CC
