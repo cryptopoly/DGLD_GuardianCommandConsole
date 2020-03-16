@@ -1,16 +1,83 @@
 #!/bin/bash 
 # set -x # debug
 
+# CBT Node
 auction_requests=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[]")
 genesis_block=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[].genesisBlock")
 request_tx=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[].txid")
 current_auction=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequestbids $request_tx)
+confirmedBlockHeight=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[].confirmedBlockHeight")
+startBlockHeight=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[].startBlockHeight")
+endBlockHeight=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getrequests | jq -r ".[].endBlockHeight")
+cbt_blockheight_node=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getblockcount)
+# Guardnode Service
+guardnode_status=$(ps -ef | grep -w run_guardnode | grep -v grep | awk '{ print "Online" }')
+# DGLD Node
+utxoassetinfo=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean getutxoassetinfo)
+dgld_total=$(echo $utxoassetinfo | jq '.[] | select(.amountspendable < 10000.00000000)' | jq '.amountspendable' | awk -v OFMT=%.17g -F ',' '{SUM+=$1};END{print SUM}')
+jasonsmap=$(curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json)
+gold_mass=$(echo $jasonsmap | jq '.assets[]' | jq '.mass' | awk -v OFMT=%.17g -F ',' '{SUM+=$1};END{print SUM}')
+nuggetratio=$(awk -v OFMT=%.9g "BEGIN {print ($gold_mass)/($dgld_total)}")
+dgld_fees=314.15926535 # placeholder for actual balance from node importaddress
+troy_fees=$(awk -v OFMT=%.3g "BEGIN {print ($dgld_fees)*($nuggetratio)}")
+tickets=10 # placeholder for actual tickets
+dgld_fees_gn=$(awk -v OFMT=%.3g "BEGIN {print ($dgld_fees)/($tickets)}")
+troy_fees_gn=$(awk -v OFMT=%.3g "BEGIN {print ($troy_fees)/($tickets)}")
+timestamp_genesisBlock=1579622400
+date_genesisBlock=$(date -u -r $timestamp_genesisBlock)
+stamp_confirmedBlockHeight=$(($timestamp_genesisBlock ++ ($confirmedBlockHeight*60)))
+stamp_startBlockHeight=$(($timestamp_genesisBlock ++ ($startBlockHeight*60)))
+stamp_endBlockHeight=$(($timestamp_genesisBlock ++ ($endBlockHeight*60)))
+date_confirmedBlockHeight=$(date -u -r $stamp_confirmedBlockHeight)
+date_startBlockHeight=$(date -u -r $stamp_startBlockHeight)
+date_endBlockHeight=$(date -u -r $stamp_endBlockHeight)
 
-# Inflation
-echo "Current Auction Info:"
-echo "$current_auction"
+
+# Current date
+echo -n "Curent Date... "
+date -u 
+# GenesisBlock Timestamp from conf
+echo "GenesisBlock... $date_genesisBlock"
+# echo -n "Current Timestamp Estimate from Genesis Block Timestamp: "; date -u -r xxxxxxxxxx -v +"$blockheight_node"M
 echo ""
 
-# curl -s https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json | jq '.assets'
+# GuardNode Status
+echo -n "GuardNode Status: "
+if [ "$guardnode_status" == "" ]; then printf "${RED}Offline${NC}"; else printf "$guardnode_status";fi
+echo ""
+echo ""
 
-# jq '.[].aux[].def' file.json
+# confirmedBlockHeight": 67937
+# startBlockHeight": 70816
+# endBlockHeight": 90976
+
+echo "--Auction--"
+echo "Ends @ $confirmedBlockHeight... $date_confirmedBlockHeight"
+echo ""
+
+echo "--Service Period--"
+echo "Starts @ $startBlockHeight... $date_startBlockHeight"
+echo 
+echo "Ends @ $endBlockHeight... $date_endBlockHeight"
+echo ""
+
+
+# # Current period fees (only as current balance when I can import fees address address)
+echo "--Pool Reward--"
+echo "$dgld_fees DGLD / $troy_fees t oz / x USD"
+echo ""
+
+echo "--GuardNode Reward--"
+echo "$dgld_fees_gn DGLD / $troy_fees_gn t oz / x USD"
+echo ""
+
+
+echo "Current Auction Info:"
+# echo "$current_auction"
+echo ""
+
+# Also needed
+# node up time
+# reward based on up time
+# Num tickets claimed out of available (need)
+

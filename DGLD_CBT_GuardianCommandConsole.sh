@@ -17,13 +17,6 @@ echo
 
 # Loop CC
 while true; do
-clear
-echo "Welcome to the DGLD-CBT GuardNode Command Console - Binaries Edition"
-# Current date
-echo -n "Date: "
-date -u 
-echo ""
-
 # Check for dgld and cbt node daemons
 dgld_main_status=$(ps -ef | grep -w "ocean" | grep -v "ocean-cb" | grep -v guardnode | grep -v grep | awk '{ print "Online" }')
 # echo "$dgld_main_status"
@@ -35,15 +28,26 @@ cbt_blockheight_exp=$(curl -s https://cbtexplorer.com/api/info | jq '.blockheigh
 # echo $cbt_blockheight_exp
 dgld_blockheight_exp=$(curl -s https://explorer.dgld.ch/api/info | jq '.blockheight')
 # echo $dgld_blockheight_exp
+timestamp_genesisBlock=1579622400
+date_genesisBlock=$(date -u -r $timestamp_genesisBlock)
 
+
+clear
+echo "Welcome to the DGLD-CBT GuardNode Command Console - Binaries Edition"
+# GenesisBlock Timestamp from conf
+# echo "GenesisBlock... $date_genesisBlock"
+# Current date
+echo -n "Current Date... "
+date -u
+echo ""
 
 # CBT Sync Status
-echo -n "CBT Node Status: "
+echo -n "CBT Node Status... "
 echo "$cbt_main_status"
 if test $cbt_main_status <> "Online";
 then
 	# CBT explorer blockheight via API
-	echo -n "CBT Explorer Blockheight: "
+	echo -n "CBT Explorer Blockheight... "
 	echo -e $cbt_blockheight_exp
 	echo "";
 	# CBT node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
@@ -52,21 +56,21 @@ then
 	if (( $cbt_blockheight_node < $cbt_blockheight_exp ));
 	then
 		printf "\033[1A"
-		printf "\033[5m${AMBER}Local Node synchronising...$cbt_blockheight_node${NC}\033[0m"
+		printf "\033[5m${AMBER}Local Node synchronising... $cbt_blockheight_node${NC}\033[0m"
 		echo ""
 	else
 		printf "\033[1A"
-		echo -ne "Local CBT Node Blockheight: "; echo $cbt_blockheight_node; echo ""; fi
+		echo -ne "Local CBT Node Blockheight... "; echo $cbt_blockheight_node; echo ""; fi
 	else printf "${RED}Offline${NC}"; echo ""
 	fi
 
 # DGLD Sync Status
-echo -n "DGLD Node Status: "
+echo -n "DGLD Node Status... "
 echo "$dgld_main_status"
 if test $dgld_main_status <> "Online";
 then
 	# DGLD.ch explorer blockheight via API
-	echo -n "DGLD Explorer Blockheight: "
+	echo -n "DGLD Explorer Blockheight... "
 	echo -e $dgld_blockheight_exp
 	echo "";
 	# DGLD node sync check from explorer api [+/- block sync tolerance level & pause until sync'd]
@@ -76,17 +80,17 @@ then
 	(( $dgld_blockheight_node < $dgld_blockheight_exp ));
 	then
 		printf "\033[1A"
-		printf "\033[5m${AMBER}Local Node synchronising...$dgld_blockheight_node${NC}\033[0m"
+		printf "\033[5m${AMBER}Local Node synchronising... $dgld_blockheight_node${NC}\033[0m"
 		echo ""
 		echo ""
 	else
 		printf "\033[1A"
-		echo -ne "Local DGLD Node Blockheight: "; echo $dgld_blockheight_node; echo ""; fi
+		echo -ne "Local DGLD Node Blockheight... "; echo $dgld_blockheight_node; echo ""; fi
 	else printf "${RED}Offline${NC}"; echo ""
 	fi
 
 # GuardNode Status
-echo -n "GuardNode Status: "
+echo -n "GuardNode Status... "
 if [ "$guardnode_status" == "" ]; then printf "${RED}Offline${NC}"; else printf "$guardnode_status";fi
 echo ""
 
@@ -115,7 +119,7 @@ echo ""
 fi
 
 # Confirm exit (updated loop and no longer required)
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "Press any key to continue..."
 echo ""
 echo ""
 

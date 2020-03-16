@@ -11,6 +11,8 @@ $HOME/CryptopoTools = /home/my-pc/CryptopoTools
 # Best page ever on bash/linux calculations
 https://unix.stackexchange.com/questions/40786/how-to-do-integer-float-calculations-in-bash-or-other-languages-frameworks
 
+# jq '.[].aux[].def' file.json
+
 
 # Map.json
 https://s3.eu-west-1.amazonaws.com/gtsa-mapping/map.json
