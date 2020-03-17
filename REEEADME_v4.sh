@@ -134,6 +134,14 @@ python3 setup.py install
 # sudo pip3 install python-bitcoinlib
 
 
+# Import fees address
+$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean &
+$HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb &
+$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean importaddress gLMjotKMMTni8GaTddRdxydZ3p5SRJcjFq &
+
+
+
+
 
 echo "System restarting to apply changes"
 sleep 4

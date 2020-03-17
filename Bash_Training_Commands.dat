@@ -1,5 +1,6 @@
 #!/bin/bash 
 
+exit 
 # Root Directory
 $HOME
 # Example
@@ -11,7 +12,30 @@ $HOME/CryptopoTools = /home/my-pc/CryptopoTools
 # Best page ever on bash/linux calculations
 https://unix.stackexchange.com/questions/40786/how-to-do-integer-float-calculations-in-bash-or-other-languages-frameworks
 
-# jq '.[].aux[].def' file.json
+# DGLD Site Asset Inf
+dgld_assets_api=$(curl -s https://explorer.dgld.ch/api/assets | jq '.')
+
+
+# jq example
+# [{
+#     "id": 123,
+#     "name": "John",
+#     "aux": [{
+#         "abc": "random",
+#         "def": "I want this"
+#     }],
+#     "blah": 23.11
+# }]
+# jq '.[].aux[].def' file.json result
+# "I want this"
+
+#Timer Countdown
+secs=$((5 * 60))
+while [ $secs -gt 0 ]; do
+   echo -ne "$secs\033[0K\r"
+   sleep 1
+   : $((secs--))
+done
 
 
 # Map.json
