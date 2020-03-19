@@ -138,11 +138,7 @@ python3 setup.py install
 $HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean &
 $HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb &
 $HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean importaddress gLMjotKMMTni8GaTddRdxydZ3p5SRJcjFq &
-
-
-
-
-
+sleep 4
 echo "System restarting to apply changes"
 sleep 4
 shutdown -r 0
