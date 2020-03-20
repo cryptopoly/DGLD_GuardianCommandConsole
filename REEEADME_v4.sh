@@ -1,9 +1,14 @@
 #!/bin/bash 
 
+# Log stuff for troubleshooting
+set -x
+
+
 #### DGLD CBT Ocean Nodes and GuardNode kinda all-in-one script ####
 
 
 ######## WARNING: USE AT YOUR OWN RISK - I HAVE NO IDEA WHAT I'M DOING! ########
+
 
 
 # CryptoRaptor
@@ -27,9 +32,6 @@
 # 'b' prefix to all shortcuts to run the binaries version
 
 ######### INSTALL_SCRIPT ########
-
-# Log stuff for troubleshooting
-# set -x
 
 # MacOS requirements
 # brew update && brew upgrade
@@ -63,18 +65,23 @@
 source ~/.bash_aliases
 
 # Install required libraries
-cd $HOME/DGLD_GuardianCommandConsole/
-sudo apt-get update -y
-apt-get upgrade -y
-apt dist-upgrade -y
+# sudo apt-get update -y
+# apt-get upgrade -y
+# apt dist-upgrade -y
 apt install git -y
-git clone https://github.com/goldtokensa/config dgld
-git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
-apt install docker -y
-apt install docker-compose -y
 apt install jq -y
 apt install curl -y
+# apt install docker -y
+# apt install docker-compose -y
 apt autoremove -y
+
+# Clone repos
+cd $HOME
+git clone https://github.com/goldtokensa/config dgld
+git clone https://github.com/commerceblock/guardnode
+git clone https://github.com/cryptopoly/DGLD_GuardianCommandConsole
+git clone https://github.com/commerceblock/ocean
+
 
 # Create folders
 mkdir $HOME/ocean
@@ -114,7 +121,6 @@ rm -r $HOME/ocean/binaries/$LATEST_RELEASE/DEBIAN
 
 # Install GuardNode
 cd $HOME
-git clone https://github.com/commerceblock/guardnode
 cd guardnode
 apt install python3-pip -y
 pip3 install -r requirements.txt
