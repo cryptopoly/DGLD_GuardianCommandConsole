@@ -45,15 +45,19 @@
 # brew install -s libjson-rpc-cpp
 # Shallow brew fix
 # git -C "$(brew --repo homebrew/core)" fetch --unshallow
+# Install Cask (MacOS specific)
+# Install Cask
+# brew install caskroom/cask/brew-cask
+# # Install docker toolbox
+# brew cask install docker-toolbox
+# # Install client binaries on macOS
+# tar xzvf $HOME/Downloads/docker-19.03.1.tgz
+
 
 # Kill docker & binaries processes before install
-cd $HOME/DGLD_GuardianCommandConsole/
-killall oceand
-killall guardnode
-killall docker
-
-# Latest Aliases
-./AliasUpdate.sh &
+# killall oceand
+# killall guardnode
+# killall docker
 
 # Force alias update
 source ~/.bash_aliases
@@ -72,18 +76,13 @@ apt install jq -y
 apt install curl -y
 apt autoremove -y
 
-# Install Cask (MacOS specific)
-# Install Cask
-# brew install caskroom/cask/brew-cask
-# # Install docker toolbox
-# brew cask install docker-toolbox
-# # Install client binaries on macOS
-# tar xzvf $HOME/Downloads/docker-19.03.1.tgz
-
 # Create folders
 mkdir $HOME/ocean
 mkdir $HOME/ocean/binaries
 mkdir $HOME/ocean/binaries/versions
+
+# Latest Aliases
+./AliasUpdate.sh &
 
 # Get latest deb release version & URL from github
 LATEST_RELEASE=$(curl -s https://api.github.com/repos/commerceblock/ocean/releases/latest \
