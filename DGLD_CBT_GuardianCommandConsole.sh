@@ -13,7 +13,7 @@ clear
 echo "Reticulating splines..."
 cd $HOME/DGLD_GuardianCommandConsole
 sleep 2
-echo
+echo	
 
 # Loop CC
 while true; do
