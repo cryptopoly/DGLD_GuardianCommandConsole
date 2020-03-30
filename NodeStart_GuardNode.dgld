@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-set -x # debug
+# set -x # debug
 
 # Check for GuardNode status and kick off if off
 guardnode_status=$(pgrep python3 | awk '{ print "Online" }')
