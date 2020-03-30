@@ -1,6 +1,11 @@
 #!/bin/bash 
+exit #stops you from executing everything accidentally!
 
-exit 
+# Resources
+# Bash shortcuts
+https://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/
+# 
+
 # Root Directory
 $HOME
 # Example
