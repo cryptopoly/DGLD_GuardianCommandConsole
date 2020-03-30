@@ -6,14 +6,8 @@ RED='\033[0;31m'
 AMBER='\033[0;33m'
 NC='\033[0m' # No Colour
 
-# Force alias update
-source ~/.bash_aliases
-
-clear
 echo "Reticulating splines..."
 cd $HOME/DGLD_GuardianCommandConsole
-sleep 2
-echo	
 
 # Loop CC
 while true; do
@@ -33,7 +27,7 @@ date_genesisBlock=$(date -u -r $timestamp_genesisBlock)
 
 
 clear
-echo "Welcome to the DGLD-CBT GuardNode Command Console - Binaries Edition"
+echo "Welcome to the DGLD-CBT GuardNode Command Console"
 # GenesisBlock Timestamp from conf
 # echo "GenesisBlock... $date_genesisBlock"
 # Current date
@@ -107,20 +101,18 @@ read menuid
 echo ""
 
 # Exit clause
-if [[ -z $menuid ]] ; then exec ;
+if [[ -z $menuid ]] ; then ./DGLD_CBT_GuardianCommandConsole.sh ;
 elif [[ $menuid == "00" ]] ; then exit ;
-elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then exec
+elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then ./DGLD_CBT_GuardianCommandConsole.sh
 else
 
 # Execute command file
 exec=$(echo "$menu" | grep -w "$menuid" | awk '{ print $2 }')
 ./"$exec"
-echo ""
 fi
 
 # Confirm exit (updated loop and no longer required)
 read -n 1 -s -r -p "Press any key to continue..."
-echo ""
 echo ""
 
 done

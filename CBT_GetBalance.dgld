@@ -5,6 +5,9 @@ cbt_totalbalance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb ge
 cbt_availablebalance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance | jq '.[]')
 cbt_lockedbalance=$(awk -v OFMT=%.14g "BEGIN {print ($cbt_totalbalance)-($cbt_availablebalance)}")
 
+echo "---CBT Balances---"
+echo ""
+
 echo "Total CBT: $cbt_totalbalance"
 echo ""
 

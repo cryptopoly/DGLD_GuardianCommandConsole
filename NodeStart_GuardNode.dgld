@@ -1,5 +1,6 @@
 #!/bin/bash 
-# set -x # debug
+
+set -x # debug
 
 # Check for GuardNode status and kick off if off
 guardnode_status=$(pgrep python3 | awk '{ print "Online" }')
@@ -9,8 +10,26 @@ then
 	# echo "GuardNode server online"
 	sleep 0
 else
-	echo "Starting GuardNode (binaries)..."
-	nohup $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 100000 &
-	# gnome-terminal -- $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit 1 &
-	sleep 2
+	./CBT_GetBalance.dgld
+	echo "Please enter your maximum GuardNode bid limit in CBT or press enter to bid up to the maximum available balance above"
+	read guardnode_bid
+	echo $guardnode_bid
+	if [[ -z $guardnode_bid ]]
+	then
+		cbt_availablebalance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance | jq '.[]')
+		nohup $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit $cbt_availablebalance &
+		sleep 2
+	else
+		nohup $HOME/guardnode/run_guardnode --rpcuser ocean --rpcpass oceanpass --rpchost 0.0.0.0:8443 --servicerpcuser ocean --servicerpcpass oceanpass --servicerpchost 127.0.0.1:8332 --nodelogfile $HOME/dgld/mainnet/ocean/gold_main/debug.log --challengehost https://coordinator.mainnet.gtsa.io:10007 --bidlimit $guardnode_bid &
+		sleep 2
+	fi 
 fi
+
+
+# Exit clause - need to add min/max
+# if [[ -z $menuid ]] ; then ./DGLD_CBT_GuardianCommandConsole.sh ;
+# elif [[ $menuid == "00" ]] ; then exit ;
+# elif ! (($menuid >= 1 && $menuid <= $menucount)) ; then exec
+# else
+
+
