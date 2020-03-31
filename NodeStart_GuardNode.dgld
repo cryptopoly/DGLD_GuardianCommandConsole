@@ -13,7 +13,6 @@ else
 	./CBT_GetBalance.dgld
 	echo "Please enter your maximum GuardNode bid limit in CBT or press enter to bid up to the maximum available balance above"
 	read guardnode_bid
-	echo $guardnode_bid
 	if [[ -z $guardnode_bid ]]
 	then
 		cbt_availablebalance=$($HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb getbalance | jq '.[]')
