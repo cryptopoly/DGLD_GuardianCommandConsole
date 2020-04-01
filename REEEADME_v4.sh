@@ -141,7 +141,9 @@ python3 setup.py install
 
 # Import fees address
 $HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean &
+sleep 4
 $HOME/ocean/oceand -datadir=$HOME/dgld/mainnet/ocean-cb &
+sleep 4
 $HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean importaddress gLMjotKMMTni8GaTddRdxydZ3p5SRJcjFq &
 sleep 4
 echo "System restarting to apply changes"
