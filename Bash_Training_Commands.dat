@@ -6,6 +6,14 @@ exit #stops you from executing everything accidentally!
 https://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/
 # 
 
+# Mongo - Dump full DB
+mongodump -d <database_name> -o <directory_backup>
+# Mogo restore from files
+mongorestore -d <database_name> <directory_backup>
+
+# Mongo export as json file
+mongoexport -h [HOST:PORT] -d [DATABASE] -c [COLLECTION] -u [USERNAME] -p [PASSWORD] -o [JSON_FILE] --jsonArray
+
 # Root Directory
 $HOME
 # Example
@@ -19,6 +27,9 @@ https://unix.stackexchange.com/questions/40786/how-to-do-integer-float-calculati
 
 # DGLD Site Asset Inf
 dgld_assets_api=$(curl -s https://explorer.dgld.ch/api/assets | jq '.')
+
+# jq - c command epic makes like a table
+curl -X GET https://forex-data-feed.swissquote.com/public-quotes/bboquotes/instrument/XAU/USD | jq -c '.[].spreadProfilePrices[]'
 
 
 # jq example

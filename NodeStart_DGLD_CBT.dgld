@@ -8,4 +8,5 @@ $HOME/DGLD_GuardianCommandConsole/NodeStart_DGLD.dgld
 
 $HOME/DGLD_GuardianCommandConsole/NodeStart_CBT.dgld
 
-$HOME/DGLD_GuardianCommandConsole/NodeStart_GuardNode.dgld
+# Needs to start separate due to block sync requirement (add condition here?)
+# $HOME/DGLD_GuardianCommandConsole/NodeStart_GuardNode.dgld

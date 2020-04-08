@@ -6,15 +6,15 @@ grep -v "" ~/.bash_aliases > ~/.bash_aliases
 ## Save useful alias shortcuts for node functions ##
 
 # Binaries aliases
-echo "alias dgldnodestart='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias dgldnodestart='$HOME/DGLD_GuardianCommandConsole/NodeStart_DGLD.dgld'" >> ~/.bash_aliases
 echo "alias dgld='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean '" >> ~/.bash_aliases
-echo "alias dgldnodestop='$HOME/DGLD_GuardianCommandConsole/DGLD_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias cbtnodestart='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStart.dgld'" >> ~/.bash_aliases
+echo "alias dgldnodestop='$HOME/DGLD_GuardianCommandConsole/NodeStop_DGLD.dgld'" >> ~/.bash_aliases
+echo "alias cbtnodestart='$HOME/DGLD_GuardianCommandConsole/NodeStart_CBT.dgld'" >> ~/.bash_aliases
 echo "alias cbt='$HOME/ocean/ocean-cli -datadir=$HOME/dgld/mainnet/ocean-cb '" >> ~/.bash_aliases
-echo "alias cbtnodestop='$HOME/DGLD_GuardianCommandConsole/CBT_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias gnstart='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStart.dgld'" >> ~/.bash_aliases
-echo "alias gnstop='$HOME/DGLD_GuardianCommandConsole/GuardNode_NodeStop.dgld'" >> ~/.bash_aliases
-echo "alias allnodestart='$HOME/DGLD_GuardianCommandConsole/Start_Nodes.dgld'" >> ~/.bash_aliases
+echo "alias cbtnodestop='$HOME/DGLD_GuardianCommandConsole/NodeStop_CBT.dgld'" >> ~/.bash_aliases
+echo "alias gnstart='$HOME/DGLD_GuardianCommandConsole/NodeStart_GuardNode.dgld'" >> ~/.bash_aliases
+echo "alias gnstop='$HOME/DGLD_GuardianCommandConsole/NodeStop_GuardNode.dgld'" >> ~/.bash_aliases
+echo "alias allnodestart='$HOME/DGLD_GuardianCommandConsole/NodeStart_DGLD_CBT.dgld'" >> ~/.bash_aliases
 echo "alias allnodestop='$HOME/DGLD_GuardianCommandConsole/Stop_Nodes.dgld'" >> ~/.bash_aliases
 echo "alias cc='$HOME/DGLD_GuardianCommandConsole/DGLD_CBT_GuardianCommandConsole.sh'" >> ~/.bash_aliases
 
